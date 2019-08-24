@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    create_table :fishes do |t|
+    create_table :fish do |t|
       t.string :name ,null: false
       t.timestamps
     end
