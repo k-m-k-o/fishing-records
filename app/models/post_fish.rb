@@ -1,0 +1,2 @@
+class PostFish < ApplicationRecord
+end
