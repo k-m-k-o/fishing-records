@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_24_033334) do
+ActiveRecord::Schema.define(version: 2019_08_24_042120) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.boolean "toilet", null: false
     t.boolean "car", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.bigint "prefecture_id"
     t.bigint "city_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_areas_on_city_id"
     t.index ["prefecture_id"], name: "index_areas_on_prefecture_id"
   end
@@ -40,36 +40,40 @@ ActiveRecord::Schema.define(version: 2019_08_24_033334) do
 
   create_table "pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image", null: false
+    t.bigint "post_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "post_id"
     t.index ["post_id"], name: "index_pictures_on_post_id"
+    t.index ["user_id"], name: "index_pictures_on_user_id"
   end
 
   create_table "post_fishes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "fish_id"
+    t.bigint "fishes_id"
     t.bigint "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["fish_id"], name: "index_post_fishes_on_fish_id"
+    t.index ["fishes_id"], name: "index_post_fishes_on_fishes_id"
     t.index ["post_id"], name: "index_post_fishes_on_post_id"
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.string "how", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "fish_id"
-    t.bigint "area_id"
-    t.bigint "time_zone_id"
     t.bigint "prefecture_id"
     t.bigint "city_id"
+    t.bigint "area_id"
+    t.bigint "time_zone_id"
+    t.bigint "user_id"
+    t.bigint "fishes_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["area_id"], name: "index_posts_on_area_id"
     t.index ["city_id"], name: "index_posts_on_city_id"
-    t.index ["fish_id"], name: "index_posts_on_fish_id"
+    t.index ["fishes_id"], name: "index_posts_on_fishes_id"
     t.index ["prefecture_id"], name: "index_posts_on_prefecture_id"
     t.index ["time_zone_id"], name: "index_posts_on_time_zone_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "prefectures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -84,15 +88,34 @@ ActiveRecord::Schema.define(version: 2019_08_24_033334) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.bigint "prefecture_id"
+    t.string "nickname", null: false
+    t.string "profile"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
   add_foreign_key "areas", "cities"
   add_foreign_key "areas", "prefectures"
   add_foreign_key "cities", "prefectures"
   add_foreign_key "pictures", "posts"
-  add_foreign_key "post_fishes", "fishes"
+  add_foreign_key "pictures", "users"
+  add_foreign_key "post_fishes", "fishes", column: "fishes_id"
   add_foreign_key "post_fishes", "posts"
   add_foreign_key "posts", "areas"
   add_foreign_key "posts", "cities"
-  add_foreign_key "posts", "fishes"
+  add_foreign_key "posts", "fishes", column: "fishes_id"
   add_foreign_key "posts", "prefectures"
   add_foreign_key "posts", "time_zones"
+  add_foreign_key "posts", "users"
+  add_foreign_key "users", "prefectures"
 end
