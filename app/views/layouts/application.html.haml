@@ -7,5 +7,33 @@
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
   %body
-    = yield
+    %header
+      .header-container
+        .header__title
+          .header__title__logos
+            = link_to "",class: "title__logos__title-logo" do
+              FishingRecords
+          .header__menu
+            %ul.header__menu__list
+              %li.header__menu__list__content
+                = link_to "",class: "li-link" do
+                  ログイン
+              %li.header__menu__list__content
+                = link_to "",class: "li-link" do
+                  ログアウト
+              %li.header__menu__list__content
+                = link_to "",class: "li-link" do
+                  アカウント登録
+              %li.header__menu__list__content
+                = link_to "",class: "li-link" do
+                  アカウント編集
+              %li.header__menu__list__content
+                = link_to "",class: "li-link" do
+                  釣果検索
+              %li.header__menu__list__content
+                = link_to "",class: "li-link" do
+                  釣場検索
+    .container
+      = yield
