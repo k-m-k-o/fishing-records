@@ -40,6 +40,12 @@ ActiveRecord::Schema.define(version: 2019_08_24_064027) do
     t.index ["name"], name: "index_fish_on_name", unique: true
   end
 
+  create_table "hours", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "hour", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image", null: false
     t.bigint "post_id"
@@ -65,7 +71,7 @@ ActiveRecord::Schema.define(version: 2019_08_24_064027) do
     t.bigint "prefecture_id"
     t.bigint "city_id"
     t.bigint "area_id"
-    t.bigint "time_zone_id"
+    t.bigint "hour_id"
     t.bigint "user_id"
     t.bigint "fish_id"
     t.datetime "created_at", null: false
@@ -73,8 +79,8 @@ ActiveRecord::Schema.define(version: 2019_08_24_064027) do
     t.index ["area_id"], name: "index_posts_on_area_id"
     t.index ["city_id"], name: "index_posts_on_city_id"
     t.index ["fish_id"], name: "index_posts_on_fish_id"
+    t.index ["hour_id"], name: "index_posts_on_hour_id"
     t.index ["prefecture_id"], name: "index_posts_on_prefecture_id"
-    t.index ["time_zone_id"], name: "index_posts_on_time_zone_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -83,12 +89,6 @@ ActiveRecord::Schema.define(version: 2019_08_24_064027) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_prefectures_on_name", unique: true
-  end
-
-  create_table "time_zones", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "time_zones", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -118,8 +118,8 @@ ActiveRecord::Schema.define(version: 2019_08_24_064027) do
   add_foreign_key "posts", "areas"
   add_foreign_key "posts", "cities"
   add_foreign_key "posts", "fish"
+  add_foreign_key "posts", "hours"
   add_foreign_key "posts", "prefectures"
-  add_foreign_key "posts", "time_zones"
   add_foreign_key "posts", "users"
   add_foreign_key "users", "prefectures"
 end

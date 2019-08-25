@@ -18,12 +18,17 @@
 
 
 header{
+  font-family: 'Kaushan Script', cursive;
   height: 100px;
   position: fixed;
   width: 100%;
   padding: 100px 0 0 100px;
   margin: -100px 0 0 -100px; 
-  background-color: lightgray; 
+  background-color: #0477BF; 
+  & a{
+    text-decoration: none;
+    color: white;
+  }
 }
 .header-container{
   padding: 0 30px 0 30px;
@@ -32,16 +37,43 @@ header{
   display: flex;
   justify-content: space-between;
   &__logos{
+    line-height: 80px;
     font-size: 30px;
     color: black;
     text-decoration: none;
   }
-  .header__menu{
-    &__list{
-      list-style: none;
-    }
-  }
 }
 .container{
   padding-top: 100px;
+}
+li {
+  list-style: none;
+}
+.header__menu{
+  width: 200px;
+  height: 100px;
+  line-height: 40px;
+  &__list{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 30px;
+    .menu__second{
+      display: none;
+      position: absolute;
+      padding-top: 50px;
+      &__content{
+        height: 40px;
+        width: 200px;
+        font-size: 20px;
+        background-color: #049CD8;
+        text-align: center;
+        border-bottom: 0.5px white solid;
+      }
+    } 
+  }
+ 
+}
+ul.header__menu li:hover ul {
+  display: block;  
+
 }

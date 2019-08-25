@@ -15,25 +15,28 @@
           .header__title__logos
             = link_to "",class: "title__logos__title-logo" do
               FishingRecords
-          .header__menu
-            %ul.header__menu__list
-              %li.header__menu__list__content
-                = link_to "",class: "li-link" do
-                  ログイン
-              %li.header__menu__list__content
-                = link_to "",class: "li-link" do
-                  ログアウト
-              %li.header__menu__list__content
-                = link_to "",class: "li-link" do
-                  アカウント登録
-              %li.header__menu__list__content
-                = link_to "",class: "li-link" do
-                  アカウント編集
-              %li.header__menu__list__content
-                = link_to "",class: "li-link" do
-                  釣果検索
-              %li.header__menu__list__content
-                = link_to "",class: "li-link" do
-                  釣場検索
+          %ul.header__menu
+            %li.header__menu__list
+              = link_to "#", class: "init__bottom" do
+                Menu
+              %ul.menu__second
+                %li.menu__second__content
+                  = link_to "",class: "li-link" do
+                    ログイン
+                %li.menu__second__content
+                  = link_to destroy_user_session_path,method: :delete do
+                    ログアウト
+                %li.menu__second__content
+                  = link_to "",class: "li-link" do
+                    アカウント登録
+                %li.menu__second__content
+                  = link_to "",class: "li-link" do
+                    アカウント編集
+                %li.menu__second__content
+                  = link_to "",class: "li-link" do
+                    釣果検索
+                %li.menu__second__content
+                  = link_to "",class: "li-link" do
+                    釣場検索
     .container
       = yield

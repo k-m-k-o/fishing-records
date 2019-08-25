@@ -1,7 +1,7 @@
 class CreatePosts < ActiveRecord::Migration[5.2]
   def change
-    create_table :time_zones do |t|
-      t.string :time_zones ,null: false
+    create_table :hours do |t|
+      t.string :hour ,null: false,unique: true
       t.timestamps
     end
 
@@ -14,5 +14,6 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string :name ,null: false
       t.timestamps
     end
+
   end
 end
