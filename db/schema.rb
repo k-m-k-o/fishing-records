@@ -12,18 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_08_24_064027) do
 
-  create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.boolean "toilet", null: false
-    t.boolean "car", null: false
-    t.bigint "prefecture_id"
-    t.bigint "city_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_areas_on_city_id"
-    t.index ["prefecture_id"], name: "index_areas_on_prefecture_id"
-  end
-
   create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "prefecture_id"
@@ -70,15 +58,11 @@ ActiveRecord::Schema.define(version: 2019_08_24_064027) do
     t.string "how", null: false
     t.bigint "prefecture_id"
     t.bigint "city_id"
-    t.bigint "area_id"
     t.bigint "hour_id"
     t.bigint "user_id"
-    t.bigint "fish_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["area_id"], name: "index_posts_on_area_id"
     t.index ["city_id"], name: "index_posts_on_city_id"
-    t.index ["fish_id"], name: "index_posts_on_fish_id"
     t.index ["hour_id"], name: "index_posts_on_hour_id"
     t.index ["prefecture_id"], name: "index_posts_on_prefecture_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -108,16 +92,12 @@ ActiveRecord::Schema.define(version: 2019_08_24_064027) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "areas", "cities"
-  add_foreign_key "areas", "prefectures"
   add_foreign_key "cities", "prefectures"
   add_foreign_key "pictures", "posts"
   add_foreign_key "pictures", "users"
   add_foreign_key "post_fishes", "fish"
   add_foreign_key "post_fishes", "posts"
-  add_foreign_key "posts", "areas"
   add_foreign_key "posts", "cities"
-  add_foreign_key "posts", "fish"
   add_foreign_key "posts", "hours"
   add_foreign_key "posts", "prefectures"
   add_foreign_key "posts", "users"

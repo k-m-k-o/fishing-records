@@ -45,7 +45,9 @@ header{
 }
 .container{
   padding-top: 100px;
+  height: calc(100vh - 100px);
 }
+
 li {
   list-style: none;
 }
@@ -76,4 +78,19 @@ li {
 ul.header__menu li:hover ul {
   display: block;  
 
+}
+.main_contents{
+  width:100vw;
+  display: flex;
+  height:100%;
+  &__left{
+    padding-top: 50px;
+    width: calc(100vw - 300px);
+    height: 100%;
+  }
+  &__right{
+    width:300px;
+    height: 100%;
+    background-color:#AEDBF2; 
+  }
 }

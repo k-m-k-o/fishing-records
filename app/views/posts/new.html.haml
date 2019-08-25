@@ -1,0 +1,31 @@
+.main_contents
+  .main_contents__left
+    = form_for @post do |f|
+      .title-input-form
+        .title-input-form__left
+          = f.label :title, "タイトル文" 
+        .title-input-form__right
+          = f.text_field :title
+      .pref-choice-form
+        .pref-choice-form__left
+          = f.label :prefecture_id ,"都道府県"
+        .pref-choice-form__right  
+          = f.select :prefecture_id, @pref_choices, class: "select_form"
+      .city-choice-form
+        .city-choice-form__left
+          = f.label :city_id ,"市区町村"
+        .city-choice-form__right
+          = render partial:"cities", locals: {city_choices: @city_choices}
+      .time-choice-form
+        .time-choice-form__left
+          = f.label :hour_id ,"時間帯"
+        .time-choice-form__right
+          = f.select :hour_id, @times ,class: "select_form"
+      .fish_search
+        .fish_search__left
+          = f.label :fish_id, "魚名検索" 
+        .fish_search__right
+          .fish_search__right__search
+            %input#fish-search-field.fish_search__right__search--form{placeholder: "追加したい魚名を入力してください", :type => "text"}
+      
+  .main_contents__right

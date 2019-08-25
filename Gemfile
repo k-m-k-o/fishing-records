@@ -68,6 +68,7 @@ gem 'nokogiri'
 gem 'haml-rails'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'material_icons'
 
 

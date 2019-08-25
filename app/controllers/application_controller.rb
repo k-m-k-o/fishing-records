@@ -4,10 +4,7 @@ class ApplicationController < ActionController::Base
    
   def get_prefecture
     @prefectures = Prefecture.all
-    @choice_pref = []
-    @prefectures.each do |pref|
-      @choice_pref << [pref.name, pref.id]
-    end  
+    @pref_choices = @prefectures.map{|pref| [pref.name, pref.id,data: {cities_path:  prefecture_cities_path(pref)}]} 
   end  
 
   protected

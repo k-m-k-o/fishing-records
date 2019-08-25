@@ -5,15 +5,16 @@
     %title FishingRecords
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
 
   %body
     %header
       .header-container
         .header__title
           .header__title__logos
-            = link_to "",class: "title__logos__title-logo" do
+            = link_to "/",class: "title__logos__title-logo" do
               FishingRecords
           %ul.header__menu
             %li.header__menu__list
@@ -21,22 +22,22 @@
                 Menu
               %ul.menu__second
                 %li.menu__second__content
-                  = link_to "",class: "li-link" do
+                  = link_to  new_user_session_path,class: "li-link" do
                     ログイン
                 %li.menu__second__content
-                  = link_to destroy_user_session_path,method: :delete do
+                  = link_to destroy_user_session_path,method: :delete,class: "li-link" do
                     ログアウト
                 %li.menu__second__content
-                  = link_to "",class: "li-link" do
+                  = link_to new_user_registration_path,class: "li-link" do
                     アカウント登録
                 %li.menu__second__content
-                  = link_to "",class: "li-link" do
+                  = link_to edit_user_registration_path,class: "li-link" do
                     アカウント編集
                 %li.menu__second__content
-                  = link_to "",class: "li-link" do
+                  = link_to search_index_path,class: "li-link" do
                     釣果検索
                 %li.menu__second__content
-                  = link_to "",class: "li-link" do
-                    釣場検索
+                  = link_to new_post_path,class: "li-link" do
+                    釣果投稿
     .container
       = yield
