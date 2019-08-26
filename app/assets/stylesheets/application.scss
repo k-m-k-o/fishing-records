@@ -15,6 +15,7 @@
  */
  @import "font-awesome";
  @import "material_icons";
+ @import "./reset.scss";
 
 
 header{
@@ -37,7 +38,7 @@ header{
   display: flex;
   justify-content: space-between;
   &__logos{
-    line-height: 80px;
+    line-height: 100px;
     font-size: 30px;
     color: black;
     text-decoration: none;
@@ -54,7 +55,7 @@ li {
 .header__menu{
   width: 200px;
   height: 100px;
-  line-height: 40px;
+  line-height: 100px;
   &__list{
     display: flex;
     justify-content: flex-end;
@@ -62,9 +63,9 @@ li {
     .menu__second{
       display: none;
       position: absolute;
-      padding-top: 50px;
+      padding-top: 90px;
       &__content{
-        height: 40px;
+        line-height: 50px;
         width: 200px;
         font-size: 20px;
         background-color: #049CD8;
@@ -84,13 +85,13 @@ ul.header__menu li:hover ul {
   display: flex;
   height:100%;
   &__left{
-    padding-top: 50px;
     width: calc(100vw - 300px);
     height: 100%;
+    overflow-y: scroll;
   }
   &__right{
     width:300px;
     height: 100%;
-    background-color:#AEDBF2; 
+    overflow: scroll;
   }
 }

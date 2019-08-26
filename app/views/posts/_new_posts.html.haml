@@ -1,0 +1,15 @@
+.current_posts 
+  %p.posts__announce 最新の投稿
+  - posts.each do |post|
+    .current_posts__container
+      .current_post
+        = link_to post_path(post) do
+          .post_title
+            = post.title.truncate(9)
+          .post__image
+            = image_tag post.image.thumb.to_s
+          .post__info
+            .post__info__pref
+              = post.prefecture.name
+            .post__info__time
+              = post.created_at.strftime("%m/%d")

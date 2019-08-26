@@ -21,23 +21,25 @@
               = link_to "#", class: "init__bottom" do
                 Menu
               %ul.menu__second
+                - if user_signed_in?
+                  %li.menu__second__content
+                    = link_to destroy_user_session_path,method: :delete,class: "li-link" do
+                      ログアウト
+                  %li.menu__second__content
+                    = link_to edit_user_registration_path,class: "li-link" do
+                      アカウント編集
+                  %li.menu__second__content
+                    = link_to new_post_path,class: "li-link" do
+                      釣果投稿
+                - else
+                  %li.menu__second__content
+                    = link_to  new_user_session_path,class: "li-link" do
+                      ログイン
+                  %li.menu__second__content
+                    = link_to new_user_registration_path,class: "li-link" do
+                      アカウント登録
                 %li.menu__second__content
-                  = link_to  new_user_session_path,class: "li-link" do
-                    ログイン
-                %li.menu__second__content
-                  = link_to destroy_user_session_path,method: :delete,class: "li-link" do
-                    ログアウト
-                %li.menu__second__content
-                  = link_to new_user_registration_path,class: "li-link" do
-                    アカウント登録
-                %li.menu__second__content
-                  = link_to edit_user_registration_path,class: "li-link" do
-                    アカウント編集
-                %li.menu__second__content
-                  = link_to search_index_path,class: "li-link" do
-                    釣果検索
-                %li.menu__second__content
-                  = link_to new_post_path,class: "li-link" do
-                    釣果投稿
+                  = link_to posts_path,class: "li-link" do
+                    釣果検索・一覧
     .container
       = yield

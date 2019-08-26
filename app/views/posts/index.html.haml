@@ -1,6 +1,18 @@
 .main_contents
   .main_contents__left
-    .post_contents
-      .posts
-        = @posts.each do |post|
+    .posts-container
+      - @posts.each do |post|
+        .post-content
+          .post-content__item
+            = link_to post_path(post) do
+              .post_content__title
+                = post.title.truncate(9)
+              .post__content__image
+                = image_tag post.image.thumb.to_s
+              .post__content__info
+                .post__content__info__pref
+                  = post.prefecture.name
+                .post__content__info__time
+                  = post.created_at.strftime("%m/%d")
   .main_contents__right
+    .search-contents

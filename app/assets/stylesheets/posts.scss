@@ -1,3 +1,85 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+a{
+  text-decoration: none;
+  color: black;
+}
+.posts__announce{
+  padding-top: 10px;
+}
+.post_input_form{
+  padding: 30px 40px 0 40px;
+  width: 100%;
+}
+.fish-add-form,.fish-find__right__add,.fish-search__right__add,.fish-search,.fish-find{
+  display: flex;
+}
+.field_with_errors{
+  display:inline-block;
+}
+#fish-search-result,#fish-find-result{
+  max-height: 300px;
+  overflow: scroll;
+  background-color: #DCEEF2;
+  margin-top: 5px;
+}
+.fish_search__right__add,.fish-find__right__add{ 
+  border-bottom: solid 0.5px lightgray;
+  padding:0 10px 0 10px;
+}
+.fish-search__right,.fish-find__right{
+  width: 200px;
+}
+.current_posts{
+ width: 100%;
+ margin: 0 auto;
+}
+.current_posts__container{
+  margin-top: 20px;
+  background-color: rgb(226, 237, 240);
+  border-radius: 10px;
+  width: 90%;
+  .current_post{
+    padding: 15px;
+  }
+}
+.post__info{
+  display: flex;
+  justify-content: space-between;
+  &__time{
+    padding-right: 5px;
+  }
+}
+.current_posts__container:hover{
+  background-color: rgb(182, 217, 226);
+}
+.posts-container{
+  display: flex;
+}
+.post-content{
+  margin-left:15px;
+  margin-top: 20px;
+  background-color: rgb(226, 237, 240);
+  border-radius: 10px;
+  width: 250px;
+  &__item{
+    padding: 15px;
+  }
+}
+.post__content__info{
+  display: flex;
+  justify-content: space-between;
+  &__time{
+    padding-right: 5px;
+  }
+}
+.post-content:hover{
+  background-color: rgb(182, 217, 226);
+}
+.search-contents{
+  height:100%;
+  width: 100%;
+  background-color:#D5E6CF;
+}

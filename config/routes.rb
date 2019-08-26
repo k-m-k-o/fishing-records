@@ -9,9 +9,12 @@ Rails.application.routes.draw do
     end
   end  
   
-  resources :fish ,only: [:index]
+  resources :fish ,only: [:index] do
+    collection do
+      get :search_fish
+    end
+  end  
   resources :prefectures, only: [:index] do
     resources :cities ,only: [:index]
-  end  
-  resources :search ,only: [:index]
+  end
 end

@@ -1,1 +1,5 @@
-ここでは釣果を表示します
+.main_contents
+  .main_contents__left
+    %p.infomation_text 当アプリは釣果情報投稿、検索サービスです。
+  .main_contents__right
+    = render partial: './posts/new_posts',locals: {posts: @new_posts}
