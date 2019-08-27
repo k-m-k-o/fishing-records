@@ -19,7 +19,7 @@ a{
 .field_with_errors{
   display:inline-block;
 }
-#fish-search-result,#fish-find-result{
+#fish-search-result,#fish-find-result,#find_fishes,#fish-search-list{
   max-height: 300px;
   overflow: scroll;
   background-color: #DCEEF2;
@@ -42,14 +42,14 @@ a{
   border-radius: 10px;
   width: 90%;
   .current_post{
-    padding: 15px;
+    padding: 18px;
   }
 }
 .post__info{
   display: flex;
   justify-content: space-between;
   &__time{
-    padding-right: 5px;
+    padding-right: 15px;
   }
 }
 .current_posts__container:hover{
@@ -57,15 +57,16 @@ a{
 }
 .posts-container{
   display: flex;
+  flex-wrap: wrap;
 }
 .post-content{
   margin-left:15px;
   margin-top: 20px;
   background-color: rgb(226, 237, 240);
   border-radius: 10px;
-  width: 250px;
   &__item{
     padding: 15px;
+    
   }
 }
 .post__content__info{

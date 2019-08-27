@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_choices, only: [:new,:create,:edit,:update]
+  before_action :set_choices, only: [:index,:new,:create,:edit,:update]
   def index
     @posts = Post.includes(:user).order("created_at DESC")
   end
@@ -11,6 +11,68 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
   end
+  
+  def find_posts
+    fishes = []
+    fishes << params[:fish_ids]
+    pref = params[:prefecture_id]
+    city = params[:city_id]
+    fishes.flatten!
+    if fishes.length == 0
+      fishes = nil
+    end
+    if pref.length == 0 && fishes[0] != nil
+      @find_posts = []
+      fishes.each do |fish_id|
+        fish = Fish.find(fish_id)
+        posts = fish.posts.order("created_at DESC")
+        @find_posts << posts
+      end
+      @find_posts.flatten!
+      @posts = @find_posts.uniq
+    elsif pref.length != 0 && city.length == 0 && fishes[0] != nil
+      @find_posts = []
+      fishes.each do |fish_id|
+        fish = Fish.find(fish_id)
+        posts = fish.posts.order("created_at DESC")
+        @find_posts << posts
+      end
+      @find_posts.flatten!
+      @find_posts.uniq!
+      
+      @posts = []
+      @find_posts.each do |post|
+        if post[:prefecture_id].to_s == pref
+            @posts << post
+        end
+      end
+    elsif city.length != 0 && fishes[0] != nil
+      @find_posts = []
+      fishes.each do |fish_id|
+          fish = Fish.find(fish_id)
+          posts = fish.posts.order("created_at DESC")
+          @find_posts << posts
+      end
+      @find_posts.flatten!
+      @find_posts.uniq!
+      @posts = []
+      @find_posts.each do |post|
+        if post[:city_id].to_s == city
+          @posts << post
+        end
+      end
+    elsif pref.length != 0 && city.length == 0 && fishes[0] == nil
+      @posts = Post.where(prefecture_id: pref.to_i).order("created_at DESC")
+    elsif city.length != 0 && fishes[0] == nil
+      @posts = Post.where(city_id: city.to_i).order("created_at DESC")
+    else
+      @posts = Post.all.order("created_at DESC")
+    end
+    respond_to do |format|
+      format.json
+      format.html
+    end
+  end
 
   def cities_select
     if request.xhr?
@@ -20,11 +82,16 @@ class PostsController < ApplicationController
     end
   end
 
+  def cities_search
+    if request.xhr?
+      @cities = City.where(prefecture_id: params[:prefecture_id])
+      @city_choices = @cities.map{|city| [city.name, city.id]}
+      render partial: 'search_cities', locals: {city_choices: @city_choices}
+    end
+  end
+
   def create
     @post = current_user.posts.new(post_params)
-    if @post.image.nil?
-      @post.image = "noimage.png"
-    end
     if @post.save
       redirect_to posts_path
     else
