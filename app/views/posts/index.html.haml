@@ -12,9 +12,12 @@
                   = post.title.truncate(9)
               .post-content__image
                 - if post.image.blank?
-                  %image.noimage-tag{src: "noimage.png",width: "200",height: "200"}
+                  %image.noimage-tag{src: "/noimage.png",width: "200",height: "200"}
                 -else
                   = image_tag post.image.thumb.to_s
+              .post__fishes 
+                - post.fish.slice(0,2).each do |fish|
+                  = label :fish_name,fish.name
               .post-content__info
                 .post__content__info__pref
                   = post.prefecture.name

@@ -7,7 +7,6 @@
 }
 .post-content{
   width: 250px;
-  float: left; 
   background-color: #C7EBFF;
   margin: 15px;
   padding: 15px;
@@ -19,9 +18,42 @@
     font-size: 15px;
   }
 }
+.posts-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 .post-content:hover{
   opacity: 0.6;
 }
 .size-input-form__left{
   padding-top: 20px;
+}
+a{
+color: #383838;
+}
+.post-show{
+  display: flex;
+  &__right{
+    height: 500px;
+    padding-left: 20px; 
+  }
+  &__info{
+    display: flex;
+    &--many{
+      padding-left: 15px;
+    }
+  }
+  &__area{
+    display: flex;
+  }
+}
+.posts__announce{
+  padding-left: 20px;
+}
+.post__image,.post-content__image{
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

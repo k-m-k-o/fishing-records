@@ -7,7 +7,11 @@ $(window).load(function(){
                 </div>`;
     searchHtml.append(html);
   };
-  function addAllPosts(post){
+  function addFishHTML(fish){
+    var html = `<label>${fish["name"]}</label>`
+    return html;
+  }
+  function addAllPosts(post,fish){
     var html = `<div class="post-content">
                   <div class="post-content__item">
                   <a href="/posts/${post.id}">
@@ -17,9 +21,15 @@ $(window).load(function(){
                   <div class="post__content__image">
                       <img src=${post.image}></img>
                   </div>
+                  <div class="post__fishes">
+                   ${fish}
+                  </div>
                   <div class="post-content__info">
                     <div class="post-content__info__pref">
                       ${post.pref}
+                      <div class="post__content__info__city">
+                       ${post.city}
+                      </div>
                     </div>
                     <div class="post-content__info__time">
                       ${post.time}
@@ -30,27 +40,33 @@ $(window).load(function(){
             </div>`
       return html;
   }
-  function addNoImagePosts(post){
+  function addNoImagePosts(post,fish){
     var html = `<div class="post-content">
                   <div class="post-content__item">
                   <a href="/posts/${post.id}">
-                  <div class="post_content__title">
-                    ${post.title.length === 0 ? "（無題）" : post.title}
-                  </div>
-                  <div class="post__content__image">
-                  <image class="noimage-tag" height="200" src="noimage.png" width="200"></image>
-                  </div>
-                  <div class="post-content__info">
-                    <div class="post-content__info__pref">
-                      ${post.pref}
+                    <div class="post_content__title">
+                        ${post.title.length === 0 ? "（無題）" : post.title}
                     </div>
-                    <div class="post-content__info__time">
-                      ${post.time}
+                    <div class="post__content__image">
+                      <image class="noimage-tag" height="200" src="noimage.png" width="200"></image>
                     </div>
-                  </div>
-                </a>
-              </div>
-            </div>`
+                    <div class="post__fishes">
+                      ${fish}
+                    </div>
+                    <div class="post-content__info">
+                      <div class="post-content__info__pref">
+                        ${post.pref}
+                        <div class="post__content__info__city">
+                          ${post.city}
+                        </div>
+                      </div>
+                      <div class="post-content__info__time">
+                        ${post.time}
+                      </div>
+                    </div>
+                    </a>
+                    </div>
+                  </div>`
       return html;
   }
   function fishAddHTML(id,name){
@@ -122,12 +138,18 @@ $(window).load(function(){
       $(".posts-container").children().remove();
       posts.forEach(function(post){
         $(".posts-container").hide()
+        var fish_names = [];
+        post.fish.forEach(function(fish){
+          var html = addFishHTML(fish);
+          fish_names.push(html)
+        });
+        fishes = fish_names.slice(0,2).join(`<label>,</label>`)
         if(!post.image){
-          var html = addNoImagePosts(post);
+          var html = addNoImagePosts(post,fishes);
           $(".posts-container").append(html)
         }else{
-          var html = addAllPosts(post);
-          $(".posts-container").append(html).hide().fadeIn(1000)
+          var html = addAllPosts(post,fishes);
+          $(".posts-container").append(html)
         }
         $(".posts-container").fadeIn(200)
       })

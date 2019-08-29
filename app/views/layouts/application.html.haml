@@ -2,6 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width", :name => "viewport"}/
     %title FishingRecords
     = csrf_meta_tags
     = csp_meta_tag
@@ -21,7 +22,7 @@
             %li.blue.lighten-1.border-none
               .collapsible-header.blue.lighten-1
                 %p.text-side.right 
-                  menu 
+                  Menu 
               .div.collapsible-body
                 %ul
                   - if user_signed_in?
@@ -44,5 +45,4 @@
                   %li
                     = link_to posts_path,class: "li-link" do
                       釣果検索・一覧
-    .container
-      = yield
+    = yield

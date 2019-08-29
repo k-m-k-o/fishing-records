@@ -19,9 +19,11 @@
  @import "./reset.scss";
  @import 'materialize';
 
-nav {
-}
 
+
+ .select-dropdown{
+  overflow-y: auto !important;
+}
 .collapsible-header,.border-none,.collapsible,.collapsible-body{
   border: none;
   box-shadow: none;
@@ -33,15 +35,15 @@ nav {
 .dark-color{
   background-color: gray;
 }
-
 .collapsible-header{
   border-bottom: double 1px #CBF0FF;
 }
 .main_contents{
+ width: 100%;
  display: flex;
  justify-content: space-between;
  height: calc(100vh - 60px);
- padding-top: 20px;
+ padding: 20px 30px 0 30px;
  &__left{
   height: 100%;
   overflow: scroll;
@@ -73,4 +75,13 @@ nav {
 }
 .btn{
   margin-top: 20px;
+}
+@media screen and (max-width: 1300px){
+  .none {display:none}
+  .main_contents__left{
+    width: 100%;
+  }
+  .main_contents{
+    margin: 0 auto;
+  }
 }

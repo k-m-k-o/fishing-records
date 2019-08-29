@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
   before_action :set_choices, only: [:index,:new,:create,:edit,:update]
   def index
-    @posts = Post.includes(:user).order("created_at DESC")
+    @posts = Post.includes(:user).order("created_at DESC").limit(100)
   end
  
   def show
     @post = Post.find(params[:id])
+    @user = @post.user
+    @user_posts = @user.posts.limit(5)
   end  
   
   def new
@@ -66,7 +68,7 @@ class PostsController < ApplicationController
     elsif city.length != 0 && fishes[0] == nil
       @posts = Post.where(city_id: city.to_i).order("created_at DESC")
     else
-      @posts = Post.all.order("created_at DESC")
+      @posts = Post.limit(100).order("created_at DESC")
     end
     respond_to do |format|
       format.json

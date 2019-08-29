@@ -1,5 +1,6 @@
 .current_posts.none
-  %p.posts__announce 最新の投稿
+  %p.posts__announce 
+    = user.nickname + "さんの最近の投稿"
   - posts.each do |post|
     .current_posts__container
       .current_post
