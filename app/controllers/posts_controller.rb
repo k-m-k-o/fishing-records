@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
-    @user_posts = @user.posts.limit(5)
+    @user_posts = @user.posts.order("created_at DESC").limit(5)
   end  
   
   def new

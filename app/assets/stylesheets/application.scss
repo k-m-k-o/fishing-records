@@ -76,7 +76,7 @@
 .btn{
   margin-top: 20px;
 }
-@media screen and (max-width: 1300px){
+@media screen and (max-width: 1400px){
   .none {display:none}
   .main_contents__left{
     width: 100%;
@@ -84,4 +84,23 @@
   .main_contents{
     margin: 0 auto;
   }
+}
+.header__title__logos{
+  padding-left: 20px;
+}
+@media screen and (max-width: 1000px){
+  .post-show{
+    display: block;
+    &__right{
+      padding-left: 0;
+    }
+  }
+}
+.text-side{
+  width: 100%;
+  text-align: right;
+}
+.menu{
+  display: list-item;
+  float: none;
 }

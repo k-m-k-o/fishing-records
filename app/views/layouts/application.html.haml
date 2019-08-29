@@ -13,36 +13,37 @@
   %body
     %header
       %nav
-        .nav-wrapper.blue.lighten-1
+        .nav-wrapper.blue.lighten-3
           .header__title
             .header__title__logos
               = link_to "/",class: "title__logos__title-logo brand-logo" do
                 FishingRecords
           %ul.right.collapsible
-            %li.blue.lighten-1.border-none
-              .collapsible-header.blue.lighten-1
+            %li.border-none.blue.lighten-2
+              .collapsible-header.blue.lighten-3
                 %p.text-side.right 
                   Menu 
               .div.collapsible-body
                 %ul
                   - if user_signed_in?
-                    %li
+                    %li.menu
                       = link_to destroy_user_session_path,method: :delete,class: "li-link" do
                         ログアウト                  
-                    %li                 
+                    %li.menu           
                       = link_to edit_user_registration_path,class: "li-link" do
                         アカウント編集
-                    %li
+                    %li.menu
                       = link_to new_post_path,class: "li-link" do
                         釣果投稿                
                   - else
-                    %li
+                    %li.menu
                       = link_to  new_user_session_path,class: "li-link" do
                         ログイン
-                    %li
+                    %li.menu
                       = link_to new_user_registration_path,class: "li-link" do
                         アカウント登録
-                  %li
+                  %li.menu
                     = link_to posts_path,class: "li-link" do
                       釣果検索・一覧
-    = yield
+    .contents
+      = yield
