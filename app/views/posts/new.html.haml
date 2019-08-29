@@ -1,5 +1,7 @@
 .main_contents
   .main_contents__left
+    - if @post.errors.any?
+      %p.error_alert 未入力の項目があります
     .post_input_form
       = form_for @post do |f|
         .title-input-form
@@ -9,7 +11,7 @@
         .pref-choice-form
           .pref-choice-form__left
             = f.label :prefecture_id ,"都道府県" 
-            = f.select :prefecture_id, @pref_choices, class: "select_form"
+            = f.select :prefecture_id, @pref_choices, class: "select_form",include_blank: true
         .city-choice-form
           .city-choice-form__left
             = f.label :city_id ,"市区町村"
@@ -34,11 +36,9 @@
           .size-input-form__left
             = f.label :size, "サイズ（㎝）"
             = f.text_field :size ,placeholder: "例）25~30、35"
-            = label :size_opt ,"㎝"
           .many-input-form
             = f.label :many, "数（大体で問題ありません）"
             = f.text_field :many, placeholder: "例) 約20"
-            = label :many_opt ,"匹"
         .hou-input-form
           .how-input-form__left
             = f.label :how ,"釣り方（詳しく書かなくてOK!）"
@@ -47,6 +47,6 @@
           .pictures-input-form__left
             = f.label :image ,"写真を付ける"
             = f.file_field :image,placeholder: "画像選択"
-        = f.submit "投稿する！"
+        = f.submit "投稿する！",class: "btn"
   .main_contents__right
     = render partial: 'new_posts',locals: {posts: @new_posts}

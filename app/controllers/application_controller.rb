@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :set_current_post
   def get_prefecture
     @prefectures = Prefecture.all
-    @pref_choices = @prefectures.map{|pref| [pref.name, pref.id,data: {cities_path:  prefecture_cities_path(pref)}]} 
+    @pref_choices = @prefectures.map{|pref| [pref.name, pref.id]} 
     @cities = City.where(prefecture_id: 1)
     @city_choices = []
   end  

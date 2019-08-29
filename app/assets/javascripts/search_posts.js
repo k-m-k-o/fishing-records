@@ -8,7 +8,8 @@ $(function(){
       }
     })
     .done(function(data){
-      $('#search_city_id').html(data);
+      $(".search_cities").html(data)
+      $("#search_city_id").formSelect();
     });
   });
   

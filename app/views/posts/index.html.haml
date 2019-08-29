@@ -5,16 +5,21 @@
         .post-content
           .post-content__item
             = link_to post_path(post) do
-              .post_content__title
-                = post.title.truncate(9)
-              .post__content__image
+              .post-content__title
+                -if post.title.length == 0
+                  = "（無題）"
+                - else
+                  = post.title.truncate(9)
+              .post-content__image
                 - if post.image.blank?
                   %image.noimage-tag{src: "noimage.png",width: "200",height: "200"}
                 -else
                   = image_tag post.image.thumb.to_s
-              .post__content__info
+              .post-content__info
                 .post__content__info__pref
                   = post.prefecture.name
+                  .post__content__info__city
+                    = post.city.name.truncate(8)
                 .post__content__info__time
                   = post.created_at.strftime("%m/%d")
   .main_contents__right
@@ -23,7 +28,8 @@
         .pref-choice-form
           .pref-choice-form__left
             = label :prefecture_id ,"都道府県" 
-            = select :search,:prefecture_id, @pref_choices,include_blank: true,class: "select_form"
+            .input-field.col.s12
+              = select :search,:prefecture_id, @pref_choices,include_blank: true,class: "select_form"
         .city-choice-form
           .city-choice-form__left
             = label :city_id ,"市区町村"

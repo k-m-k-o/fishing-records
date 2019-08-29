@@ -99,10 +99,11 @@ class PostsController < ApplicationController
     end  
   end
 
-  def edit 
+  def edit
   end
 
-  def update
+  def update 
+
   end
   
   def destroy

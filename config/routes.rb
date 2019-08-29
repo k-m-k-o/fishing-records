@@ -17,7 +17,4 @@ Rails.application.routes.draw do
       get :find_fish
     end
   end  
-  resources :prefectures, only: [:index] do
-    resources :cities ,only: [:index]
-  end
 end

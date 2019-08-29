@@ -10,88 +10,67 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require material_icons
  *= require_tree .
  *= require_self
  */
  @import "font-awesome";
  @import "material_icons";
  @import "./reset.scss";
+ @import 'materialize';
 
-
-header{
-  font-family: 'Kaushan Script', cursive;
-  height: 100px;
-  position: fixed;
-  width: 100%;
-  padding: 100px 0 0 100px;
-  margin: -100px 0 0 -100px; 
-  background-color: #0477BF; 
-  & a{
-    text-decoration: none;
-    color: white;
-  }
-}
-.header-container{
-  padding: 0 30px 0 30px;
-}
-.header__title{
-  display: flex;
-  justify-content: space-between;
-  &__logos{
-    line-height: 100px;
-    font-size: 30px;
-    color: black;
-    text-decoration: none;
-  }
-}
-.container{
-  padding-top: 100px;
-  height: calc(100vh - 100px);
+nav {
 }
 
-li {
-  list-style: none;
+.collapsible-header,.border-none,.collapsible,.collapsible-body{
+  border: none;
+  box-shadow: none;
 }
-.header__menu{
-  width: 200px;
-  height: 100px;
-  line-height: 100px;
-  &__list{
-    display: flex;
-    justify-content: flex-end;
-    font-size: 30px;
-    .menu__second{
-      display: none;
-      position: absolute;
-      padding-top: 90px;
-      &__content{
-        line-height: 50px;
-        width: 200px;
-        font-size: 20px;
-        background-color: #049CD8;
-        text-align: center;
-        border-bottom: 0.5px white solid;
-      }
-    } 
-  }
- 
-}
-ul.header__menu li:hover ul {
-  display: block;  
 
+.material-icons{
+  line-height: 0;
+}
+.dark-color{
+  background-color: gray;
+}
+
+.collapsible-header{
+  border-bottom: double 1px #CBF0FF;
 }
 .main_contents{
-  width:100vw;
+ display: flex;
+ justify-content: space-between;
+ height: calc(100vh - 60px);
+ padding-top: 20px;
+ &__left{
+  height: 100%;
+  overflow: scroll;
+  width: 76%;
+  padding: 0 30px 0 30px;
+ }
+ &__right{
+   height: 100%;
+   overflow:scroll;
+   width: 24%;
+ }
+}
+.current_posts__container{
+  width: 250px;
+  float: left; 
+  background-color: #C7EBFF;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 12px;
+}
+.current_posts__container:hover{
+  opacity: 0.6;
+}
+.post__info{
   display: flex;
-  height:100%;
-  &__left{
-    width: calc(100vw - 300px);
-    height: 100%;
-    overflow-y: scroll;
-  }
-  &__right{
-    width:300px;
-    height: 100%;
-    overflow: scroll;
-  }
+  justify-content: space-between;
+  padding-right: 15px;
+  font-size: 15px;
+}
+.btn{
+  margin-top: 20px;
 }

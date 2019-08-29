@@ -8,5 +8,7 @@ class Post < ApplicationRecord
   validates :size, presence: true
   validates :how, presence: true
   validates :many, presence: true
+  validates :prefecture_id, presence: true
+  validates :city_id ,presence: true
   mount_uploader :image, PostsUploader
 end

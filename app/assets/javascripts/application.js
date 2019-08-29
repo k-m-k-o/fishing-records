@@ -13,4 +13,10 @@
 //=require jquery 
 //=require rails-ujs 
 //=require activestorage
+//= require materialize
 //=require_tree .
+
+$(document).ready(function(){
+  $('select').formSelect();
+  $('.collapsible').collapsible();
+});

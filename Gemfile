@@ -71,4 +71,6 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'material_icons'
 gem 'carrierwave'
+gem 'materialize-sass', '~> 1.0.0'
+gem 'rails-i18n'
 

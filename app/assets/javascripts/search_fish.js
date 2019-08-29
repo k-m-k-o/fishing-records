@@ -12,16 +12,16 @@ $(window).load(function(){
                   <div class="post-content__item">
                   <a href="/posts/${post.id}">
                   <div class="post_content__title">
-                    ${post.title}
+                  ${post.title.length === 0 ? "（無題）" : post.title}
                   </div>
                   <div class="post__content__image">
                       <img src=${post.image}></img>
                   </div>
-                  <div class="post__content__info">
-                    <div class="post__content__info__pref">
+                  <div class="post-content__info">
+                    <div class="post-content__info__pref">
                       ${post.pref}
                     </div>
-                    <div class="post__content__info__time">
+                    <div class="post-content__info__time">
                       ${post.time}
                     </div>
                   </div>
@@ -35,16 +35,16 @@ $(window).load(function(){
                   <div class="post-content__item">
                   <a href="/posts/${post.id}">
                   <div class="post_content__title">
-                    ${post.title}
+                    ${post.title.length === 0 ? "（無題）" : post.title}
                   </div>
                   <div class="post__content__image">
                   <image class="noimage-tag" height="200" src="noimage.png" width="200"></image>
                   </div>
-                  <div class="post__content__info">
-                    <div class="post__content__info__pref">
+                  <div class="post-content__info">
+                    <div class="post-content__info__pref">
                       ${post.pref}
                     </div>
-                    <div class="post__content__info__time">
+                    <div class="post-content__info__time">
                       ${post.time}
                     </div>
                   </div>
@@ -121,20 +121,21 @@ $(window).load(function(){
     .done(function(posts){
       $(".posts-container").children().remove();
       posts.forEach(function(post){
+        $(".posts-container").hide()
         if(!post.image){
           var html = addNoImagePosts(post);
           $(".posts-container").append(html)
         }else{
           var html = addAllPosts(post);
-          $(".posts-container").append(html)
+          $(".posts-container").append(html).hide().fadeIn(1000)
         }
+        $(".posts-container").fadeIn(200)
       })
     })
     .fail(function(){
-      adderrHTML("投稿に失敗しました")
+      adderrHTML("検索に失敗しました")
     });
   }
-  $("#fish-find-field").on("change",searchPosts);
-  $("#search_city_id").on("change",searchPosts);
-  $("#search_prefecture_id").on("change",searchPosts);
+  $(".search-contents").on("change",searchPosts);
+  $(".search-contents").on("keyup",searchPosts);
 });

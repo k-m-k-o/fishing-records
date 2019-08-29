@@ -1,6 +1,7 @@
 
 $(function(){
   $("#post_prefecture_id").on("change",function(){
+    console.log("a")
     $.ajax({
       type: "get",
       url: "/posts/cities_select",
@@ -9,8 +10,10 @@ $(function(){
       }
     })
     .done(function(data){
-      $('#post_city_id').html(data)
-    });
+      $(".search_cities").html(data)
+      $("#post_city_id").formSelect();
+    })
+
   });
   
 });
