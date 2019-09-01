@@ -109,8 +109,12 @@
   padding-top: 15px;
   padding-bottom: 15px;
 }
-.show-how-to-use{
-  font-size: 40px;
+.wrap-how{
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-size: 30px;
+  color: white;
   padding-top: 30px;
 }
 .current_posts__container:hover{
