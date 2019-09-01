@@ -1,3 +1,52 @@
 // Place all the styles related to the areas controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.area-show,.area-show__pref-city,.area-show__info--toilet,.area-show__info--car{
+  display: flex;
+}
+.area-show__right{
+  padding-top: 50px;
+  width: 500px;
+  padding-left: 30px;
+}
+.area-show__infomations{
+  height: 200px;
+  width: 100%;
+}
+.area-show__name{
+  font-size: 18px;
+  border-left: solid 8px yellowgreen;
+  line-height: 30px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 1300px){
+  .area-show{
+    display: block;
+    &__right{
+      padding-left: 0;
+    }
+  }
+}
+.areas-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.area-content{
+  background-color: rgb(253, 226, 167);
+  border-radius: 10px;
+  width: 230px;
+  margin: 10px;
+  padding: 15px;
+  & div{
+    color: rgb(85, 84, 84);
+  }
+}
+.find-area-name{
+  font-size: 21px; 
+}
+.area-content__info{
+  display: flex;
+}

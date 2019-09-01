@@ -18,9 +18,52 @@
  @import "material_icons";
  @import "./reset.scss";
  @import 'materialize';
-
-
-
+.describe{
+  height: calc(100vh-60px);
+  overflow: scroll;
+}
+.add-message{
+  height: 60px;
+  z-index: 2;
+  & .message-infomation{
+    line-height: 60px;
+    padding-left: 25px;
+    color: white;
+  } 
+}
+.describe-container{
+  width: 100vw;
+}
+.main-wrapper{
+  background: image-url('background.jpg');
+  background-position : bottom;
+  height: 600px;
+  width: 100vw;
+  position: relative;
+  background-size: cover;
+}
+.main-wrapper::after{
+  content: "";
+  background-color: rgba(161, 186, 255, 0.7);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.wrap-info{
+  z-index: 1;
+  position: relative;
+  text-align: 500px;
+  text-align: center;
+  font-size: 50px;
+  word-wrap: break-word;
+  padding-top: 220px;
+  color: rgb(255, 255, 255); 
+}
+.show-how-to-use-container{
+  text-align: center;
+}
  .select-dropdown{
   overflow-y: auto !important;
 }
@@ -52,17 +95,23 @@
  }
  &__right{
    height: 100%;
-   overflow:scroll;
    width: 24%;
+   overflow: scroll;
  }
 }
-.current_posts__container{
-  width: 250px;
-  float: left; 
-  background-color: #C7EBFF;
-  margin: 15px;
-  padding: 15px;
-  border-radius: 12px;
+.use-step{
+  padding-top: 50px;
+}
+.use-step-sub{
+  padding-top: 35px;
+}
+.use-info{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.show-how-to-use{
+  font-size: 40px;
+  padding-top: 30px;
 }
 .current_posts__container:hover{
   opacity: 0.6;
@@ -103,4 +152,9 @@
 .menu{
   display: list-item;
   float: none;
+}
+.contents{
+  position: absolute;
+  z-index: -1;
+  width: 100vw;
 }

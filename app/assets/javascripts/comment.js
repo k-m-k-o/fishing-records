@@ -1,0 +1,33 @@
+$(window).load(function(){
+  function buildHTML(comment){
+    var html = `<p>
+                   <strong>
+                    <a href=/users/${comment.id}>${comment.user}</a>
+                    </strong>
+                    ${comment.text}
+                 </p>`
+    return html;
+  }
+  
+  $("#new-comment").on('submit', function(e){
+    e.preventDefault();
+    var formData = new FormData(this);
+    var url = $(this).attr('action')
+    $.ajax({
+      url: url,
+      type: "POST",
+      data: formData,
+      dataType: 'json',
+      processData: false,
+      contentType: false
+    })
+    .done(function(data){
+      var html = buildHTML(data);
+      $('#area-show__comment__container').prepend(html)
+      $('.comment-textbox').val('')
+    })
+    .fail(function(){
+      alert('投稿できません');
+    })
+  })
+});

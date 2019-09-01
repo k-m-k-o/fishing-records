@@ -21,8 +21,8 @@
               .post-content__info
                 .post__content__info__pref
                   = post.prefecture.name
-                  .post__content__info__city
-                    = post.city.name.truncate(8)
+                  .post__content__info__area
+                    = post.area.name
                 .post__content__info__time
                   = post.created_at.strftime("%m/%d")
   .main_contents__right
@@ -37,6 +37,11 @@
           .city-choice-form__left
             = label :city_id ,"市区町村"
             = render partial:"search_cities", locals: {city_choices: @city_choices}
+        .area-choice-form
+          .area-choice-form__left
+            = label :name,"釣り場名"
+            = text_field :search,:name,praceholder: "例：〇〇漁港、△△堤防",id: "find_area_name"
+            #find-areas
         .fish-find-form
           .fish-search
             .fish-search__left

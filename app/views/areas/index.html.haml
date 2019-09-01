@@ -1,0 +1,19 @@
+.main_contents
+  .main_contents__left
+    .areas-container
+  .main_contents__right
+    .search-areas
+      .pref-choice-form
+        .pref-choice-form__left
+          = label :prefecture_id ,"都道府県" 
+          .input-field.col.s12
+            = select :search,:prefecture_id, @pref_choices,include_blank: true,class: "select_form"
+          .city-choice-form
+            .city-choice-form__left
+              = label :city_id ,"市区町村"
+              = render partial:"posts/search_cities", locals: {city_choices: @city_choices}
+        .area-choice-form
+          .area-choice-form__left
+            = label :name,"釣り場名"
+            = text_field :search,:name,praceholder: "例：〇〇漁港、△△堤防",id: "find_area_name"
+            #find-areas

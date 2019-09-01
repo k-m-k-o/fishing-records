@@ -17,4 +17,12 @@ Rails.application.routes.draw do
       get :find_fish
     end
   end  
+  resources :areas ,except: [:destroy] do
+    resources :comments ,only: [:create]
+    collection do
+      get :find_areas
+      get :search_areas
+      get :area_cities
+    end
+  end
 end

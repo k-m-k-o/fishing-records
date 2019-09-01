@@ -4,6 +4,6 @@ json.array! @posts do |post|
   json.time post.created_at.strftime("%m/%d")
   json.image post.image.thumb.to_s
   json.pref post.prefecture.name
-  json.city post.city.name.truncate(9)
+  json.area post.area.name
   json.fish post.fish
 end

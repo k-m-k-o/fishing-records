@@ -1,5 +1,6 @@
 .current_posts.none
-  %p.posts__announce 最新の投稿
+  %p.posts__announce 
+    = "#{message}の釣果"
   - posts.each do |post|
     .current_posts__container
       .current_post
@@ -20,7 +21,7 @@
           .post__info
             .post__info__pref
               = post.prefecture.name
-              .post__info__city
-                = post.city.name.truncate(8)
+              .post__info__area
+                = post.area.name
             .post__info__time
               = post.created_at.strftime("%m/%d")

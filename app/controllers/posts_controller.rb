@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :move_to_root,only: [:new,:create]
   before_action :set_choices, only: [:index,:new,:create,:edit,:update]
   def index
     @posts = Post.includes(:user).order("created_at DESC").limit(100)
@@ -12,18 +13,50 @@ class PostsController < ApplicationController
   
   def new
     @post = Post.new
+    @area = Area.new
   end
+
+  def create
+    @area_params = area_params
+    @area = Area.find_or_create_by(name: @area_params[:name],prefecture_id: post_params[:prefecture_id],city_id: post_params[:city_id])
+    @post = current_user.posts.new(post_params)
+    @post[:area_id] = @area.id
+    if @post.save
+      redirect_to posts_path
+    else
+      render "/posts/new"
+    end  
+  end
+  
   
   def find_posts
     fishes = []
     fishes << params[:fish_ids]
     pref = params[:prefecture_id]
     city = params[:city_id]
+    area = Area.find_by(name: params[:area_name],prefecture_id: pref,city_id: city)
     fishes.flatten!
     if fishes.length == 0
       fishes = nil
     end
-    if pref.length == 0 && fishes[0] != nil
+    if area.present? && fishes[0] != nil
+      @find_posts = []
+      fishes.each do |fish_id|
+        fish = Fish.find(fish_id)
+        posts = fish.posts.order("created_at DESC")
+        @find_posts << posts
+      end
+      @find_posts.flatten!
+      @find_posts.uniq!
+      @posts = []
+      @find_posts.each do |post|
+        if post[:area_id] == area[:id]
+          @posts << post
+        end
+      end
+    elsif area.present? && fishes[0] == nil
+      @posts = Post.where(area_id: area[:id]).order("created_at DESC")
+    elsif pref.length == 0 && fishes[0] != nil
       @find_posts = []
       fishes.each do |fish_id|
         fish = Fish.find(fish_id)
@@ -41,7 +74,6 @@ class PostsController < ApplicationController
       end
       @find_posts.flatten!
       @find_posts.uniq!
-      
       @posts = []
       @find_posts.each do |post|
         if post[:prefecture_id].to_s == pref
@@ -92,30 +124,16 @@ class PostsController < ApplicationController
     end
   end
 
-  def create
-    @post = current_user.posts.new(post_params)
-    if @post.save
-      redirect_to posts_path
-    else
-      render "/posts/new"
-    end  
-  end
-
-  def edit
-  end
-
-  def update 
-
-  end
-  
-  def destroy
-  end  
-
   private
 
   def post_params
-    params.require(:post).permit(:how,:title,:prefecture_id,:city_id,:hour_id,:size,:many,{fish_ids: []},:image)
+    params.require(:post).permit(:title,:prefecture_id,:city_id,:hour_id,{fish_ids: []},:image)
   end  
+
+  def area_params
+    params.require(:area).permit(:name)
+  end
+  
 
   def remove_to_index
     unless user_signed_in?

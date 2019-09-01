@@ -1,0 +1,29 @@
+.main_contents
+  .main_contents__left
+    - if @new_area.errors.any?
+      %p.error_alert 未入力の項目があります
+    .area_input_form
+      = form_for @new_area do |f|
+        .pref-choice-form
+          .pref-choice-form__left
+            = f.label :prefecture_id ,"都道府県" 
+            = f.select :prefecture_id, @pref_choices, class: "select_form",include_blank: true
+        .city-choice-form
+          .city-choice-form__left
+            = f.label :city_id ,"市区町村"
+            = render partial:"input_cities", locals: {city_choices: @city_choices}
+        .new-area-input-form
+          .new-area-input-form
+            = f.label :name, "釣場の名称"
+            = f.text_field :name, placeholder: "釣場を入力してください。例：○○漁港、△△磯…",id: "new-areas-input"
+            #find-areas
+        .infomation-select-form
+          .infomation-select-form__toilet
+            = f.label :toilet,"トイレ（有無を選択してください）"
+            = f.select :toilet,[["不明",nil],["あり",true],["なし",false]]
+          .infomation-select-form__car
+            = f.label :car,"駐車場（有無を選択してください）"
+            = f.select :car,[["不明",nil],["あり",true],["なし",false]]
+        = f.submit "投稿する！",class: "btn"
+  .main_contents__right
+    = render partial: 'posts/new_posts',locals: {posts: @new_posts, message: "最新"}

@@ -27,8 +27,8 @@ $(window).load(function(){
                   <div class="post-content__info">
                     <div class="post-content__info__pref">
                       ${post.pref}
-                      <div class="post__content__info__city">
-                       ${post.city}
+                      <div class="post__content__info__area">
+                       ${post.area}
                       </div>
                     </div>
                     <div class="post-content__info__time">
@@ -56,8 +56,8 @@ $(window).load(function(){
                     <div class="post-content__info">
                       <div class="post-content__info__pref">
                         ${post.pref}
-                        <div class="post__content__info__city">
-                          ${post.city}
+                        <div class="post__content__info__area">
+                          ${post.area}
                         </div>
                       </div>
                       <div class="post-content__info__time">
@@ -120,6 +120,7 @@ $(window).load(function(){
   var searchPosts = function(){
     var pref = $("#search_prefecture_id").val();
     var city = $("#search_city_id").val();
+    var area = $("#find_area_name").val();
     var fishes = []
     $(".fish-input-id").each(function(){
       fishes.push($(this).val());
@@ -130,7 +131,8 @@ $(window).load(function(){
       data: {
         prefecture_id: pref,
         city_id: city,
-        fish_ids: fishes
+        fish_ids: fishes,
+        area_name: area
       },
       dataType: "json"
     })

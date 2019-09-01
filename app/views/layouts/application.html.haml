@@ -35,6 +35,9 @@
                     %li.menu
                       = link_to new_post_path,class: "li-link" do
                         釣果投稿                
+                    %li.menu
+                      = link_to new_area_path,class: "li-link" do
+                        釣り場投稿                
                   - else
                     %li.menu
                       = link_to  new_user_session_path,class: "li-link" do
@@ -45,5 +48,8 @@
                   %li.menu
                     = link_to posts_path,class: "li-link" do
                       釣果検索・一覧
+                  %li.menu
+                    = link_to areas_path,class: "li-link" do
+                      釣り場検索・一覧
     .contents
       = yield

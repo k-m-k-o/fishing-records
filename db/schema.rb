@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_26_091350) do
+ActiveRecord::Schema.define(version: 2019_09_01_055246) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -33,12 +33,34 @@ ActiveRecord::Schema.define(version: 2019_08_26_091350) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.bigint "prefecture_id"
+    t.bigint "city_id"
+    t.boolean "toilet"
+    t.boolean "car"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_areas_on_city_id"
+    t.index ["prefecture_id"], name: "index_areas_on_prefecture_id"
+  end
+
   create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "prefecture_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prefecture_id"], name: "index_cities_on_prefecture_id"
+  end
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "text", null: false
+    t.bigint "area_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["area_id"], name: "index_comments_on_area_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "fish", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -66,7 +88,6 @@ ActiveRecord::Schema.define(version: 2019_08_26_091350) do
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
-    t.string "how", null: false
     t.string "image"
     t.bigint "prefecture_id"
     t.bigint "city_id"
@@ -74,8 +95,8 @@ ActiveRecord::Schema.define(version: 2019_08_26_091350) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "size", null: false
-    t.string "many", null: false
+    t.bigint "area_id"
+    t.index ["area_id"], name: "index_posts_on_area_id"
     t.index ["city_id"], name: "index_posts_on_city_id"
     t.index ["hour_id"], name: "index_posts_on_hour_id"
     t.index ["prefecture_id"], name: "index_posts_on_prefecture_id"
@@ -107,9 +128,14 @@ ActiveRecord::Schema.define(version: 2019_08_26_091350) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "areas", "cities"
+  add_foreign_key "areas", "prefectures"
   add_foreign_key "cities", "prefectures"
+  add_foreign_key "comments", "areas"
+  add_foreign_key "comments", "users"
   add_foreign_key "post_fishes", "fish"
   add_foreign_key "post_fishes", "posts"
+  add_foreign_key "posts", "areas"
   add_foreign_key "posts", "cities"
   add_foreign_key "posts", "hours"
   add_foreign_key "posts", "prefectures"

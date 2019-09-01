@@ -19,4 +19,10 @@ class ApplicationController < ActionController::Base
   def set_current_post
     @new_posts = Post.limit(5).order("created_at DESC")
   end  
+
+  def move_to_root
+    unless user_signed_in?
+      redirect_to root_path
+    end
+  end
 end
