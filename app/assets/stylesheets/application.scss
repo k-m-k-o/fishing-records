@@ -14,13 +14,13 @@
  *= require_tree .
  *= require_self
  */
+ @import 'font-awesome-sprockets';
  @import "font-awesome";
  @import "material_icons";
  @import "./reset.scss";
  @import 'materialize';
 .describe{
-  height: calc(100vh-60px);
-  overflow: scroll;
+  height: 100vh;
 }
 .add-message{
   height: 60px;
@@ -33,6 +33,8 @@
 }
 .describe-container{
   width: 100vw;
+  height: 100vh;
+  overflow: scroll;
 }
 .main-wrapper{
   background: image-url('background.jpg');
@@ -60,9 +62,45 @@
   word-wrap: break-word;
   padding-top: 220px;
   color: rgb(255, 255, 255); 
+  padding-left: 50px;
+  padding-right: 50px; 
+}
+.app-contents{
+  display: flex;
+  width: 100vw; 
+}
+.app-content{
+  width: 25%;
+  text-align: center;
+  padding: 25px 30px 30px 30px;
+  .menu-image{
+    width: 30%;
+  }
+  .app-info{
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(75,75,75);
+  }
+}
+.app-content:hover{
+  opacity: 0.4;
+}
+@media screen and (max-width: 1400px){
+  .app-info{
+    
+  }
+}
+.function-title{
+  text-align: center;
 }
 .show-how-to-use-container{
   text-align: center;
+  background-color: rgb(138, 138, 138);
+  color: rgb(231, 231, 231);
+  .use-step,.use-step-sub{
+    font-weight: bold;
+  }
 }
  .select-dropdown{
   overflow-y: auto !important;
@@ -113,7 +151,7 @@
   position: relative;
   z-index: 1;
   text-align: center;
-  font-size: 30px;
+  font-size: 20px;
   color: white;
   padding-top: 30px;
 }

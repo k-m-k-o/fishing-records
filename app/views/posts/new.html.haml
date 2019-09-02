@@ -3,6 +3,7 @@
     .main_contents__left
       - if @post.errors.any?
         %p.error_alert 未入力の項目があります
+      .post-show__title 釣果投稿
       .post_input_form
         = form_for @post do |f|
           .title-input-form

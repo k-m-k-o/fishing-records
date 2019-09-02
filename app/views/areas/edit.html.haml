@@ -1,23 +1,24 @@
 .main_contents
   .main_contents__left
-    - if @new_area.errors.any?
+    - if @area.errors.any?
       %p.error_alert 未入力の項目があります
     .post-show__title 釣り場投稿
     .area_input_form
-      = form_for @new_area do |f|
+      = form_for @area do |f|
         .pref-choice-form
           .pref-choice-form__left
-            = f.label :prefecture_id ,"都道府県" 
-            = f.select :prefecture_id, @pref_choices, class: "select_form",include_blank: true
+            = f.label :prefecture,"都道府県" 
+            = f.hidden_field :prefecture_id,value: "#{@area.prefecture.id}"
+            = text_field :prefecture,:area, value: "#{@area.prefecture.name}",disabled: "disabled"
         .city-choice-form
           .city-choice-form__left
-            = f.label :city_id ,"市区町村"
-            = render partial:"input_cities", locals: {city_choices: @city_choices}
+            = f.label :city ,"市区町村"
+            = f.hidden_field :city_id,value: "#{@area.city.id}"
+            = text_field :city,:area,value: "#{@area.city.name}",disabled: "disabled"
         .new-area-input-form
           .new-area-input-form
             = f.label :name, "釣場の名称"
-            = f.text_field :name, placeholder: "釣場を入力してください。例：○○漁港、△△磯…",id: "new-areas-input"
-            #find-areas
+            = f.text_field :name, placeholder: "釣場を入力してください。例：○○漁港、△△磯…"
         .infomation-select-form
           .infomation-select-form__toilet
             = f.label :toilet,"トイレ（有無を選択してください）"

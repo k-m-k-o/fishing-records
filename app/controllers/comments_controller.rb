@@ -8,6 +8,8 @@ class CommentsController < ApplicationController
         format.json
         format.html{redirect_to area_path(@area)}
       end
+    else
+      render "area/show"
     end
   end
 

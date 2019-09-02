@@ -1,21 +1,42 @@
 .describe
-  .add-message.blue.darken-1
-    %p.message-infomation 釣果・釣り場を投稿、検索するアプリケーション
   .describe-container
     .main-wrapper
-      %p.wrap-info Welcome to FishingRecords
-      %p.wrap-how How to use?
+      %p.wrap-info 全国どこでも、あなたの釣り情報を共有
+      %p.wrap-how 釣果と釣り場の投稿・検索サイト
+    .app-menu-container
+      .app-contents
+        .app-content.user-menu
+          = image_tag "user.jpeg",class: "menu-image"
+          %p.app-info ユーザー登録
+        .app-content.fish-menu
+          = image_tag "fish.jpeg",class: "menu-image"
+          %p.app-info 釣果投稿
+        .app-content.area-menu
+          = image_tag "area.jpeg",class: "menu-image"
+          %p.app-info 釣り場投稿
+        .app-content.search-menu
+          = image_tag "search.jpeg",class: "menu-image"
+          %p.app-info 釣り情報検索
     .show-how-to-use-container
-      %h4.use-step アカウント登録
+      %h4.use-step Menu
+      %p.use-info 全ての機能は右上のMenuから。
+      %p.use-info ログイン前
+      = image_tag "before-login.png",class: "use-image"
+      %p.use-info ログイン後
+      = image_tag "after-login.png",class: "use-image"
+      %p.use-info それぞれのメニューをクリックすることで利用可能です。
+      %h4.use-step.user ユーザー機能
       %p.use-info 表示項目を入力して登録。ログインユーザーのみ、投稿機能が利用できます
-      %p.use-info 登録後、プロフィールコメントを設定可能
-      %h4.use-step 投稿機能 
+      = image_tag "signup-user.png",class: "use-image"
+      %h4.use-step.post 投稿機能
       %p.use-info 釣果、釣り場の２種類の投稿が可能
-      %h5.use-step-sub 釣果投稿
+      %h5.use-step-sub.fish-post 釣果投稿
       %p.use-info 釣った魚の名前、場所、時間、写真などの情報を入力して投稿
-      %h5.use-step-sub 釣り場投稿
+      = image_tag "fish-result.png",class: "use-image"
+      %h5.use-step-sub.area-post 釣り場投稿
       %p.use-info 魚を釣った場所の投稿、情報共有
-      %h4.use-step 検索機能
+      = image_tag "area-post.png",class: "use-image"
+      %h4.use-step.search 検索機能
       %h5.use-step-sub 釣果検索
       %p.use-info 投稿された釣果を検索
       %p.use-info 4つの項目を自由に組み合わせて検索

@@ -54,18 +54,18 @@ color: #383838;
   }
   &__title{
     font-size: 18px;
-    border-left: solid 8px yellowgreen;
+    border-left: solid 8px rgb(29, 153, 202);
     line-height: 30px;
     padding-left: 10px;
     margin-bottom: 20px;
+    margin-top: 25px;
   }
 }
 .posts__announce{
   padding-left: 10px;
   margin-left: 10px;
   line-height: 25px;
-
-  border-left: solid 5px rgba(102, 232, 102,0.8);
+  border-left: solid 5px rgba(97, 255, 168, 0.8);
 }
 .post__image,.post-content__image{
   height: 200px;
@@ -79,3 +79,25 @@ color: #383838;
   justify-content: center;
 }
 
+#fish-search-result,#fish-find-result,#find_fishes,#fish-search-list{
+  max-height: 150px;
+  overflow: scroll;  
+  padding-bottom: 20px;
+  
+}
+.fish_search__right__add{
+  background-color: rgb(131, 207, 207);
+  border-bottom: solid whitesmoke 0.5px;
+  color: white;
+  padding-top: 3px;
+  padding-bottom: 3px; 
+  padding-left: 13px;
+}
+.fish-find__right__add{
+  border-bottom: solid whitesmoke 0.5px;
+  color: white;
+  padding-top: 3px;
+  padding-bottom: 3px; 
+  padding-left: 13px;
+  background-color: rgb(127, 170, 116);
+}

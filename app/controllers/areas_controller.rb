@@ -53,10 +53,16 @@ class AreasController < ApplicationController
   end
 
   def edit
-
+    @area = Area.find(params[:id])
   end
 
   def update
+    @area = Area.find(params[:id])
+    if @area.update(area_params)
+      redirect_to area_path(@area)
+    else
+      render "areas/show"
+    end
 
   end
 
@@ -66,6 +72,7 @@ class AreasController < ApplicationController
   def show
     @area = Area.find(params[:id])
     @comments = @area.comments.order("created_at DESC")
+    @comment = Comment.new
     @area_posts = @area.posts.order("created_at DESC")
   end
 

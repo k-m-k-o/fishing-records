@@ -11,7 +11,7 @@
   padding-left: 30px;
 }
 .area-show__infomations{
-  height: 200px;
+  height: 100px;
   width: 100%;
 }
 .area-show__name{
@@ -24,6 +24,8 @@
 @media screen and (max-width: 1300px){
   .area-show{
     display: block;
+    width: 100vw;
+    margin: 0 auto;
     &__right{
       padding-left: 0;
     }
@@ -35,13 +37,13 @@
   flex-wrap: wrap;
 }
 .area-content{
-  background-color: rgb(253, 226, 167);
+  background-color: rgb(148, 173, 255);
   border-radius: 10px;
   width: 230px;
   margin: 10px;
   padding: 15px;
   & div{
-    color: rgb(85, 84, 84);
+    color: white;
   }
 }
 .find-area-name{
@@ -49,4 +51,26 @@
 }
 .area-content__info{
   display: flex;
+}
+.comment{
+  line-height: 35px;
+  & a{
+    margin-right: 30px;
+  }
+}
+#area-show__comment__container{
+  max-height: 300px;
+  overflow: scroll;
+  margin-top: 50px;
+}
+.area-show__left__title{
+  display: flex;
+  width: 600px;
+  justify-content: space-between;
+}
+.area-show__info{
+  padding-top: 15px;
+}
+.toilet-info{
+  padding-left: 40px; 
 }

@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
   def move_to_root
     unless user_signed_in?
-      redirect_to root_path
+      redirect_to "/"
     end
   end
 end
