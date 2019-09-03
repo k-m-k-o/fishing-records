@@ -18,4 +18,19 @@
 $(document).ready(function(){
   $('select').formSelect();
   $('.collapsible').collapsible();
+  $(".user-menu").on("click",function(){
+    $(".describe-container").animate({scrollTop: $('.user').offset().top});
+  })
+  $(".fish-menu").on("click",function(){
+    $(".describe-container").animate({scrollTop: $('.fish-post').offset().top});
+  })
+  $(".area-menu").on("click",function(){
+    $(".describe-container").animate({scrollTop: $('.area-post').offset().top});
+  })
+  $(".search-menu").on("click",function(){
+    $(".describe-container").animate({scrollTop: $('.search').offset().top});
+  })
+  $(".info-menu").on("click",function(){
+    $(".describe-container").animate({scrollTop: $('.infomation_s').offset().top});
+  })
 });

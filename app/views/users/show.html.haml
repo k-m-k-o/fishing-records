@@ -1,12 +1,7 @@
 .container
-  .user-show 
-    .user-name
-      %p.user-show__username ユーザー名
-      .username 
-        = @user.nickname
-    .user-profile
   .user-posts
-    = "#{@user.nickname}さんの投稿一覧(全#{@post_length}件)"
+    .user-posts-name
+      = "#{@user.nickname}さんの投稿一覧(全#{@post_length}件)"
     .user-posts-container
       - @posts.each do |post| 
         .post-content
