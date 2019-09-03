@@ -52,3 +52,6 @@ production:
   database: fishing-records_production
   username: fishing-records
   password: <%= ENV['FISHING-RECORDS_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
