@@ -61,6 +61,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -79,4 +80,5 @@ gem 'material_icons'
 gem 'carrierwave'
 gem 'materialize-sass', '~> 1.0.0'
 gem 'dotenv-rails'
+
 
