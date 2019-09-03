@@ -6,7 +6,7 @@ $(window).load(function(){
                 </div>`;
     findAreaForm.append(html);
   };
-  $("#find_area_name").on("keyup", function(){
+  $("#find_area_name").on("change", function(){
     var input = $("#find_area_name").val();
     var pref = $("#search_prefecture_id").val();
     var city = $("#search_city_id").val();
