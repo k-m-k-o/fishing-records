@@ -20,7 +20,7 @@
  @import "./reset.scss";
  @import 'materialize';
 .describe{
-  height: 100vh;
+  height: calc(100vh-60px);
 }
 .add-message{
   height: 60px;
@@ -35,6 +35,8 @@
   width: 100vw;
   height: 100vh;
   overflow: scroll;
+  position: relative;
+  z-index: 0;
 }
 .main-wrapper{
   background: image-url('background.jpg');
@@ -99,9 +101,7 @@
   background-color: rgb(175, 175, 175);
   color: rgb(248, 248, 248);
   padding-bottom: 50px;
-  .use-step,.use-step-sub{
-    font-weight: bold;
-  }
+  font-weight: bold;
 }
  .select-dropdown{
   overflow-y: auto !important;
@@ -200,4 +200,12 @@
   position: absolute;
   z-index: -1;
   width: 100vw;
+}
+.scroll_icon{
+  right: 80px;
+  bottom: 80px;
+  font-size: 80px;
+  z-index: 1;
+  color: rgba(231, 231, 231, 0.7);
+  position: absolute;
 }

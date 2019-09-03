@@ -33,4 +33,7 @@ $(document).ready(function(){
   $(".info-menu").on("click",function(){
     $(".describe-container").animate({scrollTop: $('.infomation_s').offset().top});
   })
+  $(".scroll_icon").on("click",function(){
+    $(".describe-container").animate({scrollTop: $('.app-content').offset().top})
+  })
 });
