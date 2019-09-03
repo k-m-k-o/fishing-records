@@ -1,0 +1,32 @@
+.main_contents
+  .main_contents__left
+    .post-show__title
+      -if @post.title.length == 0
+        = "(無題)"
+      - else
+        = @post.title
+    .post-show
+      .post-show__left
+        .post-show__image
+          - if @post.image.blank?
+            %image.noimage-tag{src: "/noimage.png",width: "500",height: "500"}
+          -else
+            = image_tag @post.image.to_s
+      .post-show__right
+        .post-show__user
+          = link_to @post.user.nickname, user_path(@post.user)
+        .post-show__fishes
+          - @post.fish.each do |fish|
+            = link_to fish.name,fish.url
+        .post-show__hour
+          = @post.hour.hour
+        .post-show__area
+          .post-show__area__pref
+            = @post.prefecture.name
+          .post-show__area__city
+            = @post.city.name
+        .post-show__area__name
+          = link_to area_path(@post.area) do
+            = @post.area.name
+  .main_contents__right
+    = render partial: 'new_user_posts',locals: {posts: @user_posts,user: @user}

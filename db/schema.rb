@@ -10,14 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_24_064027) do
+ActiveRecord::Schema.define(version: 2019_09_03_063245) do
+
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.boolean "toilet", null: false
-    t.boolean "car", null: false
+    t.string "name"
     t.bigint "prefecture_id"
     t.bigint "city_id"
+    t.boolean "toilet"
+    t.boolean "car"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_areas_on_city_id"
@@ -32,6 +53,16 @@ ActiveRecord::Schema.define(version: 2019_08_24_064027) do
     t.index ["prefecture_id"], name: "index_cities_on_prefecture_id"
   end
 
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "text", null: false
+    t.bigint "area_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["area_id"], name: "index_comments_on_area_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "fish", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -40,14 +71,10 @@ ActiveRecord::Schema.define(version: 2019_08_24_064027) do
     t.index ["name"], name: "index_fish_on_name", unique: true
   end
 
-  create_table "pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "image", null: false
-    t.bigint "post_id"
-    t.bigint "user_id"
+  create_table "hours", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "hour", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_pictures_on_post_id"
-    t.index ["user_id"], name: "index_pictures_on_user_id"
   end
 
   create_table "post_fishes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -61,20 +88,18 @@ ActiveRecord::Schema.define(version: 2019_08_24_064027) do
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
-    t.string "how", null: false
+    t.string "image"
     t.bigint "prefecture_id"
     t.bigint "city_id"
-    t.bigint "area_id"
-    t.bigint "time_zone_id"
+    t.bigint "hour_id"
     t.bigint "user_id"
-    t.bigint "fish_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "area_id"
     t.index ["area_id"], name: "index_posts_on_area_id"
     t.index ["city_id"], name: "index_posts_on_city_id"
-    t.index ["fish_id"], name: "index_posts_on_fish_id"
+    t.index ["hour_id"], name: "index_posts_on_hour_id"
     t.index ["prefecture_id"], name: "index_posts_on_prefecture_id"
-    t.index ["time_zone_id"], name: "index_posts_on_time_zone_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -85,12 +110,6 @@ ActiveRecord::Schema.define(version: 2019_08_24_064027) do
     t.index ["name"], name: "index_prefectures_on_name", unique: true
   end
 
-  create_table "time_zones", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "time_zones", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -99,7 +118,6 @@ ActiveRecord::Schema.define(version: 2019_08_24_064027) do
     t.datetime "remember_created_at"
     t.bigint "prefecture_id"
     t.string "nickname", null: false
-    t.string "profile"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -108,18 +126,18 @@ ActiveRecord::Schema.define(version: 2019_08_24_064027) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "areas", "cities"
   add_foreign_key "areas", "prefectures"
   add_foreign_key "cities", "prefectures"
-  add_foreign_key "pictures", "posts"
-  add_foreign_key "pictures", "users"
+  add_foreign_key "comments", "areas"
+  add_foreign_key "comments", "users"
   add_foreign_key "post_fishes", "fish"
   add_foreign_key "post_fishes", "posts"
   add_foreign_key "posts", "areas"
   add_foreign_key "posts", "cities"
-  add_foreign_key "posts", "fish"
+  add_foreign_key "posts", "hours"
   add_foreign_key "posts", "prefectures"
-  add_foreign_key "posts", "time_zones"
   add_foreign_key "posts", "users"
   add_foreign_key "users", "prefectures"
 end

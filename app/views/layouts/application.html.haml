@@ -1,0 +1,57 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width", :name => "viewport"}/
+    %link{:href => "https://fonts.googleapis.com/css?family=Ravi+Prakash", :rel => "stylesheet"}/
+    %link{:href => "https://fonts.googleapis.com/earlyaccess/kokoro.css", :rel => "stylesheet"}/
+    %title FishingRecords
+    = csrf_meta_tags
+    = csp_meta_tag
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+
+  %body
+    %header
+      %nav
+        .nav-wrapper.blue.lighten-3
+          .header__title
+            .header__title__logos
+              = link_to "/",class: "title__logos__title-logo brand-logo" do
+                FishingRecords
+          %ul.right.collapsible
+            %li.border-none.blue.lighten-2
+              .collapsible-header.blue.lighten-3
+                %p.text-side.right 
+                  Menu 
+              .div.collapsible-body
+                %ul
+                  - if user_signed_in?
+                    %li.menu
+                      = link_to destroy_user_session_path,method: :delete,class: "li-link" do
+                        ログアウト                  
+                    %li.menu           
+                      = link_to edit_user_registration_path,class: "li-link" do
+                        アカウント編集
+                    %li.menu
+                      = link_to new_post_path,class: "li-link" do
+                        釣果投稿                
+                    %li.menu
+                      = link_to new_area_path,class: "li-link" do
+                        釣り場投稿                
+                  - else
+                    %li.menu
+                      = link_to  new_user_session_path,class: "li-link" do
+                        ログイン
+                    %li.menu
+                      = link_to new_user_registration_path,class: "li-link" do
+                        アカウント登録
+                  %li.menu
+                    = link_to posts_path,class: "li-link" do
+                      釣果検索・一覧
+                  %li.menu
+                    = link_to areas_path,class: "li-link" do
+                      釣り場検索・一覧
+    .contents
+      = yield

@@ -1,0 +1,47 @@
+.container
+  .main_contents
+    .main_contents__left
+      - if @post.errors.any?
+        %p.error_alert 未入力の項目があります
+      .post-show__title 釣果投稿
+      .post_input_form
+        = form_for @post do |f|
+          .title-input-form
+            .title-input-form__left
+              = f.label :title, "タイトル文" 
+              = f.text_field :title,placeholder: "投稿タイトルを入力してください。空欄でも構いません。"
+          .pref-choice-form
+            .pref-choice-form__left
+              = f.label :prefecture_id ,"都道府県" 
+              = f.select :prefecture_id, @pref_choices, class: "select_form",include_blank: true
+          .city-choice-form
+            .city-choice-form__left
+              = f.label :city_id ,"市区町村"
+              = render partial:"cities", locals: {city_choices: @city_choices}
+          = fields_for @area do |o|
+            = o.label :name,"釣り場名（一致する釣り場がないときは新しく作成します）"
+            = o.text_field :name
+            #find-areas
+          .time-choice-form
+            .time-choice-form__left
+              = f.label :hour_id ,"時間帯"
+              = f.select :hour_id, @times ,class: "select_form"
+          .fish-add-form
+            .fish-search
+              .fish-search__left
+                = label :fish,"魚名検索"
+              .fish-search__right
+                %input#fish-search-field.fish-search__right__search--form{placeholder: "追加したい魚名を入力してください", :type => "text"}
+                #fish-search-result 
+            .fish-find
+              .fish-find__left
+                = label :fish,"追加する魚"
+              .fish-find__right
+                #fish-find-result
+          .pictures-input-form
+            .pictures-input-form__left
+              = f.label :image ,"写真を付ける"
+              = f.file_field :image,placeholder: "画像選択"
+          = f.submit "投稿する！",class: "btn"
+    .main_contents__right.none
+      = render partial: 'new_posts',locals: {posts: @new_posts, message: "最新"}

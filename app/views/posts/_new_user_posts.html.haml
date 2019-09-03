@@ -1,0 +1,27 @@
+.current_posts.none
+  %p.posts__announce 
+    = user.nickname + "さんの最近の投稿"
+  - posts.each do |post|
+    .current_posts__container
+      .current_post
+        = link_to post_path(post.id) do
+          .post__title
+            -if post.title.length == 0
+              = "（無題）"
+            - else
+              = post.title.truncate(9)
+          .post__image
+            - if post.image.blank?
+              %image.noimage-tag{src: "/noimage.png",width: "200",height: "200"}
+            -else
+              = image_tag post.image.thumb.to_s
+          .post__fishes 
+            - post.fish.slice(0,2).each do |fish|
+              = label :fish_name,fish.name
+          .post__info
+            .post__info__pref
+              = post.prefecture.name
+              .post__info__city
+                = post.city.name.truncate(8)
+            .post__info__time
+              = post.created_at.strftime("%m/%d")

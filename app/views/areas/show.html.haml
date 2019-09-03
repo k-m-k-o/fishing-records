@@ -1,0 +1,51 @@
+.main_contents
+  .main_contents__left
+    .area-show
+      .area-show__left
+        .area-show__left__title
+          %p.area-show__name
+            = @area.name
+          - if user_signed_in?
+            %p.area-show__edit
+              = link_to "編集する",edit_area_path(@area)
+        .area-show-map
+          %iframe{:allowfullscreen => "allowfullscreen", :frameborder => "0", :src => "https://www.google.com/maps/embed/v1/search?key=AIzaSyDG9SE3gHgFTU8UkCU-Bo82Zr2fxnJJJ-8&q=#{@area.name}+#{@area.city.name}+#{@area.prefecture.name}", :style => "border: 0;", :width => "700",:height => "700"}
+      .area-show__right
+        .area-show__infomations
+          .area-show__pref-city
+            %p.area-show__pref--name
+              = @area.prefecture.name
+            %p.area-show__city--name
+              = @area.city.name
+          .area-show__info
+            .area-show__info--toilet
+              %p.toilet トイレ
+              - if @area.toilet == nil
+                %label.toilet-info 不明
+              - elsif @area.toilet 
+                %label.toilet-info 有り
+              - else
+                %label.toilet-info 無し
+            .area-show__info--car
+              %p.car 駐車場
+              - if @area.car == nil
+                %label.toilet-info 不明
+              - elsif @area.car
+                %label.toilet-info 有り
+              - else
+                %label.toilet-info 無し
+        .area-show__comments
+          .area-show__comment__form
+            = form_with url: area_comments_path(area_id: @area.id),class: "new-comment",data: {remote: "false"}, method: :post  do |f|
+              = f.label "コメント"
+              = f.text_field :text ,class: "comment-textbox"
+              = f.submit "送信",class: "comment-submit btn",data: {disable_with: '送信...'} 
+          #area-show__comment__container
+            - @comments.each do |comment|
+              %p.comment
+                %strong
+                  = link_to user_path(comment.user) do
+                    = comment.user.nickname
+                = comment.text
+  .main_contents__right
+    = render partial: 'posts/new_posts',locals: {posts: @area_posts, message: "#{@area.name}"}

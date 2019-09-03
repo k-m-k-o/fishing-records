@@ -1,0 +1,56 @@
+.main_contents
+  .main_contents__left
+    .posts-container
+      - @posts.each do |post|
+        .post-content
+          .post-content__item
+            = link_to post_path(post) do
+              .post-content__title
+                -if post.title.length == 0
+                  = "（無題）"
+                - else
+                  = post.title.truncate(9)
+              .post-content__image
+                - if post.image.blank?
+                  %image.noimage-tag{src: "/noimage.png",width: "200",height: "200"}
+                -else
+                  = image_tag post.image.thumb.to_s
+              .post__fishes 
+                - post.fish.slice(0,2).each do |fish|
+                  = label :fish_name,fish.name
+              .post-content__info
+                .post__content__info__pref
+                  = post.prefecture.name
+                  .post__content__info__area
+                    = post.area.name
+                .post__content__info__time
+                  = post.created_at.strftime("%m/%d")
+  .main_contents__right
+    .search-contents
+      .search-contents__select
+        .pref-choice-form
+          .pref-choice-form__left
+            = label :prefecture_id ,"都道府県" 
+            .input-field.col.s12
+              = select :search,:prefecture_id, @pref_choices,include_blank: true,class: "select_form"
+        .city-choice-form
+          .city-choice-form__left
+            = label :city_id ,"市区町村"
+            = render partial:"search_cities", locals: {city_choices: @city_choices}
+        .area-choice-form
+          .area-choice-form__left
+            = label :name,"釣り場名"
+            = text_field :search,:name,praceholder: "例：〇〇漁港、△△堤防",id: "find_area_name"
+            #find-areas
+        .fish-find-form
+          .fish-search
+            .fish-search__left
+              = label :fish,"魚名検索"
+            .fish-search__right
+              %input#fish-find-field.fish-search__right__search--form{placeholder: "追加したい魚名を入力してください", :type => "text"}
+              #find_fishes
+          .fish-find-result
+            .fish-find__left
+              = label :fish,"検索する魚"
+            .fish-find__right
+              #fish-search-list

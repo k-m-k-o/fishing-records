@@ -1,0 +1,26 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.user-posts-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.user-name{
+  display: flex;
+}
+.user-posts-container{
+  max-height: 100vh;
+  overflow: scroll;
+}
+.user-posts-name{
+  margin-top: 30px;
+  font-size: 18px;
+  padding-left: 15px;
+  line-height: 30px;
+  border-left: solid 8px #84b5ff;
+}
+.use-image{
+  width: 60%;
+  max-width: 800px;
+}

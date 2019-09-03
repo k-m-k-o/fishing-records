@@ -1,0 +1,61 @@
+.describe
+  .describe-container
+    .main-wrapper
+      %p.wrap-info 全国どこでも、あなたの釣り情報を共有
+      %p.wrap-how 釣果と釣り場の投稿・検索サイト
+    .app-menu-container
+      .app-contents
+        .app-content.info-menu
+          = image_tag "info.jpeg",class: "menu-image"
+          %p.app-info アプリ情報
+        .app-content.user-menu
+          = image_tag "user.jpeg",class: "menu-image"
+          %p.app-info ユーザー登録
+        .app-content.fish-menu
+          = image_tag "fish.jpeg",class: "menu-image"
+          %p.app-info 釣果投稿
+        .app-content.area-menu
+          = image_tag "area.jpeg",class: "menu-image"
+          %p.app-info 釣り場投稿
+        .app-content.search-menu
+          = image_tag "search.jpeg",class: "menu-image"
+          %p.app-info 釣り情報検索
+    .show-how-to-use-container
+      %h4.use-step.infomation_s Infomation
+      %p.use-info このアプリケーションは、Chiha(twitter: @chiha66337409)がプログラミング学習の一環として作成しました。
+      %h4.use-step Menu
+      %p.use-info 全ての機能は右上のMenuから。
+      %p.use-info ログイン前
+      = image_tag "before-login.png",class: "use-image"
+      %p.use-info ログイン後
+      = image_tag "after-login.png",class: "use-image"
+      %p.use-info それぞれのメニューをクリックすることで利用可能です。
+      %h4.use-step.user ユーザー機能
+      %p.use-info 表示項目を入力して登録。ログインユーザーのみ、投稿機能が利用できます
+      = image_tag "sign-up.png",class: "use-image"
+      %h4.use-step.post 投稿機能
+      %p.use-info 釣果、釣り場の２種類の投稿が可能
+      %h5.use-step-sub.fish-post 釣果投稿
+      %p.use-info 釣った魚の名前、場所、時間、写真などの情報を入力して投稿
+      = image_tag "fish-post.png",class: "use-image"
+      %h5.use-step-sub.area-post 釣り場投稿
+      %p.use-info 魚を釣った場所の投稿、情報共有
+      = image_tag "area-post",class: "use-image"
+      %h4.use-step.search 検索機能
+      %h5.use-step-sub 釣果検索
+      %p.use-info 投稿された釣果を4つの項目で自由に組み合わせて検索
+      = image_tag "search_fish",class: "use-image"
+      %h5.use-step-sub 釣り場検索
+      %p.use-info 投稿された釣り場を3つの項目から検索
+      = image_tag "search_area",class: "use-image"
+      %h5.use-step-sub 詳細表示
+      %p.use-info 検索結果をクリックすることで、詳細情報ページへ
+      = image_tag "area_show",class: "use-image"
+  .scroll_icon
+    = fa_icon "arrow-circle-up"
+
+
+
+
+
+  
