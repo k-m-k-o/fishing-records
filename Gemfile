@@ -74,4 +74,5 @@ gem 'material_icons'
 gem 'carrierwave'
 gem 'materialize-sass', '~> 1.0.0'
 gem 'rails-i18n'
+gem 'dotenv-rails'
 
