@@ -108,6 +108,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.7.5)
+    dotenv-rails (2.7.5)
+      dotenv (= 2.7.5)
+      railties (>= 3.2, < 6.1)
     erubi (1.8.0)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -282,6 +286,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   compass-rails (= 3.1.0)
   devise
+  dotenv-rails
   font-awesome-rails
   font-awesome-sass
   haml-rails
