@@ -3,12 +3,10 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width", :name => "viewport"}/
-    %link{:href => "https://fonts.googleapis.com/css?family=Ravi+Prakash", :rel => "stylesheet"}/
-    %link{:href => "https://fonts.googleapis.com/earlyaccess/kokoro.css", :rel => "stylesheet"}/
     %title FishingRecords
     = csrf_meta_tags
     = csp_meta_tag
-    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
+    %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
 
