@@ -11,8 +11,7 @@ if Rails.env.production?
       aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
       region: 'ap-northeast-1'
     }
-    config.fog_directory  = 'fishing-records' # 作成したS3バケット名
+    config.fog_directory  = 'fishing-records' 
   end
-  # 日本語ファイル名の設定
   CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/ 
 end
