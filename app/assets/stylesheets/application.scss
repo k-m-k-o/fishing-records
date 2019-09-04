@@ -45,6 +45,9 @@
   width: 100vw;
   position: relative;
   background-size: cover;
+  display: flex;
+    justify-content: center; 
+    align-items: center; 
 }
 .main-wrapper::after{
   content: "";
@@ -55,14 +58,18 @@
   top: 0;
   bottom: 0;
 }
+.wrap-container{
+  display: flex;
+  flex-direction: column;
+}
 .wrap-info{
+  display:inline-block;
+  vertical-align:middle;
   z-index: 1;
   position: relative;
-  text-align: center;
   font-size: 25px;
   font-size: 3vw;
   word-wrap: break-word;
-  padding-top: 220px;
   color: rgb(255, 255, 255); 
   padding-left: 50px;
   padding-right: 50px; 
@@ -158,6 +165,8 @@
   font-size: 1.5vw;
   color: white;
   padding-top: 30px;
+  display:inline-block;
+  vertical-align:middle;
 }
 .current_posts__container:hover{
   opacity: 0.6;
