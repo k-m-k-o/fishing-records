@@ -10,13 +10,10 @@ Rails.application.routes.draw do
       get :find_posts
     end
   end  
-  
-  resources :fish ,only: [:index] do
-    collection do
-      get :search_fish
-      get :find_fish
-    end
-  end  
+
+get "fish/search_fish" => "fish#search_fish"
+get "fish/fihd_fish" => "fish#fihd_fish"
+
   resources :areas ,except: [:destroy] do
     resources :comments ,only: [:create]
     collection do
