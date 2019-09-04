@@ -4,7 +4,6 @@ $(window).load(function(){
                   <div class="post-content__item">
                   <a href="/areas/${area.id}">
                   <div class="find-area-name">
-                  <i class="fas fa-map-marked-alt"></i>
                   ${area.name}
                   </div>
                   <div class="area-content__info">
