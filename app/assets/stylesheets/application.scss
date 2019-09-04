@@ -67,8 +67,7 @@
   vertical-align:middle;
   z-index: 1;
   position: relative;
-  font-size: 25px;
-  font-size: 3vw;
+  font-size: 4vw;
   word-wrap: break-word;
   color: rgb(255, 255, 255); 
   padding-left: 50px;
@@ -88,14 +87,11 @@
   }
   .app-info{
     padding-top: 10px;
-    font-size: 80%;
+    font-size: 70%;
     font-weight: bold;
     color: rgb(75,75,75);
   }
-  .use-info{
-    padding-left: 20px;
-    padding-right: 20px; 
-  }
+  
 }
 .app-content:hover{
   opacity: 0.4;
@@ -110,8 +106,9 @@
   text-align: center;
   background-color: rgb(175, 175, 175);
   color: rgb(248, 248, 248);
-  padding-bottom: 50px;
-  font-weight: bold;
+  padding: 0 30px 50px 30px ;
+  font-weight: bolder;
+  width: 100vw;
 }
  .select-dropdown{
   overflow-y: auto !important;
@@ -150,16 +147,20 @@
 }
 .use-step{
   padding-top: 50px;
+  font-size: 150%;
 }
 .use-step-sub{
   padding-top: 35px;
+  font-size: 120%;
 }
-
+.use-info{
+  font-size: 50%;
+}
 .wrap-how{
   position: relative;
   z-index: 1;
   text-align: center;
-  font-size: 1.5vw;
+  font-size: 2vw;
   color: white;
   padding-top: 30px;
   display:inline-block;
@@ -211,9 +212,9 @@
   width: 100vw;
 }
 .scroll_icon{
-  right: 80px;
-  bottom: 80px;
-  font-size: 80px;
+  right: 5%;
+  bottom: 5%;
+  font-size: 60px;
   z-index: 1;
   color: rgba(231, 231, 231, 0.7);
   position: absolute;
