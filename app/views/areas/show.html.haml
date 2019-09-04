@@ -9,7 +9,7 @@
             %p.area-show__edit
               = link_to "編集する",edit_area_path(@area)
         .area-show-map
-          %iframe{:allowfullscreen => "allowfullscreen", :frameborder => "0", :src => "https://www.google.com/maps/embed/v1/search?key=#{ENV['GOOGLE_MAP_API']}&q=#{@area.name}+#{@area.city.name}+#{@area.prefecture.name}", :style => "border: 0;", :width => "700",:height => "700"}
+          %iframe{class: "map-window",:allowfullscreen => "allowfullscreen", :frameborder => "0", :src => "https://www.google.com/maps/embed/v1/search?key=#{ENV['GOOGLE_MAP_API']}&q=#{@area.name}+#{@area.city.name}+#{@area.prefecture.name}", :style => "border: 0;", :width => "500",:height => "500"}
       .area-show__right
         .area-show__infomations
           .area-show__pref-city

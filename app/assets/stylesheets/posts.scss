@@ -68,10 +68,18 @@ color: #383838;
   border-left: solid 5px rgba(97, 255, 168, 0.8);
 }
 .post__image,.post-content__image{
-  height: 200px;
+  max-height: 200px;
+  height: 80%;
+  width: 80%;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.fish-images{
+  width: 100%;
+  height: 100%;
+  max-width: 200px;
 }
 .post-show__image{
   height: 500px;

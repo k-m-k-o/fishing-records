@@ -19,7 +19,7 @@ $(window).load(function(){
                   ${post.title.length === 0 ? "（無題）" : post.title}
                   </div>
                   <div class="post__content__image">
-                      <img src=${post.image}></img>
+                      <img src=${post.image} class="fish-images"></img>
                   </div>
                   <div class="post__fishes">
                    ${fish}
@@ -48,7 +48,7 @@ $(window).load(function(){
                         ${post.title.length === 0 ? "（無題）" : post.title}
                     </div>
                     <div class="post__content__image">
-                      <image class="noimage-tag" height="200" src="noimage.png" width="200"></image>
+                      <image height="200" src="noimage.png" width="200" class="fish-images"></image>
                     </div>
                     <div class="post__fishes">
                       ${fish}
