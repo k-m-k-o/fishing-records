@@ -1,7 +1,7 @@
 class AreasController < ApplicationController
   before_action :move_to_root,only: [:new,:create,:edit,:update]
   def find_areas
-    @areas = Area.where('name LIKE(?) AND prefecture_id::text LIKE(?) AND city_id::text LIKE(?)', "%#{params[:name]}%","#{params[:prefecture_id]}","#{params[:city_id]}")
+    @areas = Area.where('name LIKE(?)', "%#{params[:name]}%").where(prefecture_id: params[:prefecture_id],city_id: params[:city_id])
     respond_to do |format|
       format.html
       format.json
@@ -15,11 +15,11 @@ class AreasController < ApplicationController
     if pref.length != 0 && city.length == 0 &&area.length == 0
       @areas = Area.where(prefecture_id: pref)
     elsif pref.length != 0 && city.length == 0 &&area.length != 0
-      @areas = Area.where("name LIKE(?) AND prefecture_id::text LIKE(?)","%#{area}%","#{pref}")
+      @areas = Area.where("name LIKE(?)","%#{area}%").where(prefecture_id: pref)
     elsif city.length != 0 && area.length == 0
       @areas = Area.where(prefecture_id: pref,city_id: city)
     elsif city.length != 0 && area.length != 0
-      @areas = Area.where("name LIKE(?) AND prefecture_id::text LIKE(?) AND city_id::text LIKE(?)","%#{area}%","#{pref}","#{city}")
+      @areas = Area.where("name LIKE(?)","%#{area}%").where(prefecture_id: pref,city_id: city)
     elsif pref.length == 0 && area.length != 0
       @areas = Area.where("name LIKE(?)","%#{area}%")
     else
