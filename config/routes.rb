@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end  
 
 get "fish/search_fish" => "fish#search_fish"
-get "fish/fihd_fish" => "fish#fihd_fish"
+get "fish/find_fish" => "fish#find_fish"
 
   resources :areas ,except: [:destroy] do
     resources :comments ,only: [:create]

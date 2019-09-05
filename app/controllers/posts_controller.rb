@@ -21,11 +21,12 @@ class PostsController < ApplicationController
     @area = Area.find_or_create_by(name: @area_params[:name],prefecture_id: post_params[:prefecture_id],city_id: post_params[:city_id])
     @post = current_user.posts.new(post_params)
     @post[:area_id] = @area.id
+    
     if @post.save
       redirect_to posts_path
     else
       render "/posts/new"
-    end  
+    end
   end
   
   

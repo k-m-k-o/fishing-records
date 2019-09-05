@@ -9,7 +9,6 @@ $(function(){
                  </p>`
     return html;
   }
-  
   $(".new-comment").on('submit', function(e){
     e.preventDefault();
     $(".comment-submit").removeAttr('data-disable-with');

@@ -15,7 +15,7 @@ class AreasController < ApplicationController
     if pref.length != 0 && city.length == 0 &&area.length == 0
       @areas = Area.where(prefecture_id: pref)
     elsif pref.length != 0 && city.length == 0 &&area.length != 0
-      @areas = Area.where("name LIKE(?) AND prefecture_id","%#{area}%",pref)
+      @areas = Area.where("name LIKE(?) AND prefecture_id::text LIKE(?)","%#{area}%","#{pref}")
     elsif city.length != 0 && area.length == 0
       @areas = Area.where(prefecture_id: pref,city_id: city)
     elsif city.length != 0 && area.length != 0
