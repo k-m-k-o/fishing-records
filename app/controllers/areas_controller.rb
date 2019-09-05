@@ -1,6 +1,7 @@
 class AreasController < ApplicationController
   before_action :move_to_root,only: [:new,:create,:edit,:update]
   def find_areas
+    #釣果検索フォームでの検索処理
     @areas = Area.where('name LIKE(?)', "%#{params[:name]}%").where(prefecture_id: params[:prefecture_id],city_id: params[:city_id])
     respond_to do |format|
       format.html
@@ -9,6 +10,7 @@ class AreasController < ApplicationController
   end
     
   def search_areas
+    #釣り場検索フォームでの検索処理
     pref = params[:prefecture_id]
     city = params[:city_id]
     area = params[:area_name]

@@ -1,4 +1,4 @@
-#User.create(id: 1,nickname: "chihaha",email: "kazu@koko.com",password: "veryvery",prefecture_id: 3)
+User.create(id: 1,nickname: "chihaha",email: "kazu@koko.com",password: "veryvery",prefecture_id: 3)
 2000.times do |number|
   prefecture = Prefecture.find(rand(1..47))
   cities = prefecture.cities
