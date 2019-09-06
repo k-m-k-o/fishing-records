@@ -1,24 +1,31 @@
-# README
+FishingRecords
+===
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+日本語で失礼します。
+当アプリはユーザー登録、釣果、釣り場投稿、投稿検索機能を実装したwebアプリケーションです。
 
-Things you may want to cover:
+rake db:migrate後、初期データとして以下のコマンドを実行してください
 
-* Ruby version
+魚のデータ導入
 
-* System dependencies
+```
+$ bundle exec rake db:seed:scraping
+```
 
-* Configuration
+県、市区町村のデータ導入
 
-* Database creation
+```
+$ bundle exec rake db:seed:prefecture
+```
 
-* Database initialization
+釣れた時間帯の選択肢データ導入
 
-* How to run the test suite
+```
+$ bundle exec rake db:seed:hours
+```
+※こちらのコマンドで2000個のダミー投稿（全ての項目がランダム生成）を作成します。検索フォームの動作確認等必要に応じて入力してください。
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+$ bundle exec rake db:seed:dummy
+```
 
-* Deployment instructions
-
-* ...
