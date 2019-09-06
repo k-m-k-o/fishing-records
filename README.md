@@ -3,7 +3,7 @@ FishingRecords
 
 製作者のchihaと申します。日本語で失礼致します。
 
-#概要
+# 概要
 アプリケーション名：FishingRecords
 URL：https://fishing-records.herokuapp.com/
 アプリ概要：ユーザー認証機能、投稿機能（釣果、釣り場）、投稿検索機能、詳細表示機能（googlemap付き）
