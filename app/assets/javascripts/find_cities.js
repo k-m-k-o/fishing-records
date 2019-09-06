@@ -12,7 +12,6 @@ $(window).load(function(){
       $(".search_cities").html(data)
       $("#post_city_id").formSelect();
     })
-  
   });
   $("#area_prefecture_id").on("change",function(){
     $.ajax({
