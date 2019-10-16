@@ -47,3 +47,7 @@ $ bundle exec rake db:seed:hours
 $ bundle exec rake db:seed:dummy
 ```
 
+# データベース設計
+
+
+
