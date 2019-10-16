@@ -49,5 +49,7 @@ $ bundle exec rake db:seed:dummy
 
 # データベース設計
 
+![erd](https://user-images.githubusercontent.com/53557469/66914995-f29ef900-f052-11e9-85bf-c365d16bef82.png)
+
 
 
