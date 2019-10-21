@@ -81,3 +81,4 @@ gem 'carrierwave'
 gem 'materialize-sass', '~> 1.0.0'
 gem 'dotenv-rails'
 gem "fog-aws"
+gem 'rails-erd'

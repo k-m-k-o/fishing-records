@@ -1,4 +1,5 @@
 class FishController < ApplicationController
+  #魚の非同期検索
   def search_fish
     @fishes = Fish.where('name LIKE(?)', "#{params[:keyword]}%")
     respond_to do |format|

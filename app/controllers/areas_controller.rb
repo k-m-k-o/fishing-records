@@ -32,7 +32,8 @@ class AreasController < ApplicationController
       format.json
     end
   end
-
+  
+  # 市区町村プルダウンの非同期入れ替え処理
   def area_cities
     if request.xhr?
       @cities = City.where(prefecture_id: params[:prefecture_id])
@@ -40,11 +41,12 @@ class AreasController < ApplicationController
       render partial: 'input_cities', locals: {city_choices: @city_choices}
     end
   end
-
+  
   def new
     @new_area = Area.new
   end
-
+  
+  # 釣り場の保存
   def create
     @new_area = Area.new(area_params)
     if @new_area.save
@@ -54,9 +56,11 @@ class AreasController < ApplicationController
     end
   end
 
+  #釣り場の編集
   def edit
     @area = Area.find(params[:id])
   end
+  
 
   def update
     @area = Area.find(params[:id])
@@ -70,7 +74,8 @@ class AreasController < ApplicationController
 
   def index
   end
-
+  
+  #釣り場の詳細表示
   def show
     @area = Area.find(params[:id])
     @comments = @area.comments.order("created_at DESC")

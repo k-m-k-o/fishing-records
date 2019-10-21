@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   before_action :move_to_root,only: [:create]
+
+  #コメントの非同期投稿
   def create
     @area = Area.find(params[:area_id])
     @comment = current_user.comments.new(area_id: params[:area_id],text: params[:text])

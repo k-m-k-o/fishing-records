@@ -4,13 +4,15 @@ class PostsController < ApplicationController
   def index
     @posts = Post.includes(:user).order("created_at DESC").limit(100)
   end
- 
+
+  # 釣果の詳細表示
   def show
     @post = Post.find(params[:id])
     @user = @post.user
     @user_posts = @user.posts.order("created_at DESC").limit(5)
   end  
   
+  # 釣果の新規作成
   def new
     @post = Post.new
     @area = Area.new
@@ -18,8 +20,10 @@ class PostsController < ApplicationController
 
   def create
     @area_params = area_params
-    @area = Area.find_or_create_by(name: @area_params[:name],prefecture_id: post_params[:prefecture_id],city_id: post_params[:city_id])
+    #　入力された釣り場がなかった場合create
+    @area = Area.find_or_create_by(name: area_params[:name],prefecture_id: post_params[:prefecture_id],city_id: post_params[:city_id])
     @post = current_user.posts.new(post_params)
+    binding.pry
     @post[:area_id] = @area.id
     
     if @post.save
@@ -29,7 +33,7 @@ class PostsController < ApplicationController
     end
   end
   
-  
+  # 釣り場の非同期検索
   def find_posts
     fishes = []
     fishes << params[:fish_ids]
@@ -108,7 +112,8 @@ class PostsController < ApplicationController
       format.html
     end
   end
-
+  
+  # 市区町村プルダウンの非同期入れ替え
   def cities_select
     if request.xhr?
       @cities = City.where(prefecture_id: params[:prefecture_id])
@@ -117,6 +122,7 @@ class PostsController < ApplicationController
     end
   end
 
+  # 市区町村プルダウンの非同期入れ替え
   def cities_search
     if request.xhr?
       @cities = City.where(prefecture_id: params[:prefecture_id])
@@ -142,7 +148,8 @@ class PostsController < ApplicationController
       redirect_to root_path
     end
   end  
-
+  
+  # selectフォーム用の時間帯と魚のデータセット
   def set_choices
     @hours = Hour.all
     @times = @hours.map{|time| [time.hour, time.id]}
